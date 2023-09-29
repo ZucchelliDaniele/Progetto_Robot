@@ -6,4 +6,5 @@
 * Muoversi in tutte le direzioni
 * Rilevare ostacoli
 * Seguire linee a terra di colori precisi e specificati dall'utente
-* Gancio, manuale, per la presa di oggetti 
+* Gancio, manuale, per la presa di oggetti
+* Controllo da remoto tramite gamepad, computer, telefono
