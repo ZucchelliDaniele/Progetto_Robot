@@ -569,7 +569,7 @@ function DropDownMenu(dropdownMenuID, dropdownButtonID) {
     const dropdownMenu = document.getElementById("HeaderDropDownMenu")
     const dropdownButton = document.getElementById("HeaderDropDownButton")
     document.addEventListener('click', function (event) {
-        target = event.target
+        var target = event.target
         if(!dropdownMenu.contains(target) && !dropdownButton.contains(target)) {
             dropdownMenu.classList.remove('transition', 'ease-out','duration-200');
             dropdownMenu.classList.add('transition', 'ease-in','duration-150');
