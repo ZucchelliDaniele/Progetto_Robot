@@ -1,9 +1,16 @@
 # Progetto Robot
-## Problema
-* Transporto di tanti oggetti soprattutto di piccole dimensioni in zone distinte
-* Saldatura precisa e sottile in condizioni di alto stress
-## Requisiti
-* Muoversi in tutte le direzioni
+# Problema
+L'uomo è impreciso/sbaglia/perde quando vengono trasportati tanti oggetti di piccole dimensioni, quando bisogna fare un lavoro preciso e continuo suguendo una linea precisa e quando bisogna fare movimenti precisi e veloci 
+# Obbiettivo
+Trasportare oggetti di varie dimensioni e peso da un punto preciso ad un altro, seguire/disegnare/mantenere oggetti seguendo una linea con precisione, fare movimenti precisi e rapidi
+# Funzionalità
+* ## Requisiti di autenticazione
+### Requisiti Funzionali:
+* ### Registrazione
+* Gli utenti dovranno fornire dati necessari per la registrazione di un nuovo account (email, password, nome)
+* ### Login
+* Gli utenti dovranno fornire dati necessari per la registrazione di un nuovo account (email, password, nome)
+
 * Rilevare ostacoli
 * Seguire linee a terra di colori precisi e specificati dall'utente
 * Gancio manuale per la presa di oggetti
