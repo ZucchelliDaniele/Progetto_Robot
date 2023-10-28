@@ -7,10 +7,21 @@ Trasportare oggetti di varie dimensioni e peso da un punto preciso ad un altro, 
 * ## Requisiti di autenticazione
 ### Requisiti Funzionali:
 * ### Registrazione
-* Gli utenti dovranno fornire dati necessari per la registrazione di un nuovo account (email, password, nome)
+Gli utenti devono fornire i dati necessari per la registrazione di un nuovo account (email, password, nome)
 * ### Login
-* Gli utenti dovranno fornire dati necessari per la registrazione di un nuovo account (email, password, nome)
-
+Gli utenti registrati devono poter effettuare l'accesso per utilizzare/aggiungere un robot
+### Requisiti Non Funzionali:
+* ### Recupero Account:
+Gli utenti hanno la possibilità di recuperare le credenziali (password) tramite l'indirizzo email
+* ## Requisiti d'uso
+  ### Requisiti Funzionali:
+* ### Controllo da locale
+Gli utenti hanno la possibilità di comandare il robot da locale tramite l'apposito schermo o connettendo un gamepad
+* ### Controllo da remoto
+Gli utenti hanno la possibilità di comandare il robot da remoto tramite un computer o un telefono connesso alla stessa rete e connettendo un gamepad al computer o al telefono connesso
+  ### Requisiti Non Funzionali:
+* ### Ampia Compatibilità:
+Il sistema deve riconoscere un ampia gamma di dispositivi per facilitare l'utilizzo del robot
 * Rilevare ostacoli
 * Seguire linee a terra di colori precisi e specificati dall'utente
 * Gancio manuale per la presa di oggetti
