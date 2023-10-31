@@ -238,60 +238,48 @@
 			  
 		  </h1>
 		<!-- body -->
-		<div class="p-2 grid gap-2 grid-cols-2">
-			<div>
-				<span id="GamepadStatus"></span>
-				<div>
-					X :<input id="joyX" type="text" /> FR-BL: <span id="FR-BL">0</span></br>
-					Y :<input id="joyY" type="text" /> FL-BR: <span id="FL-BR">0</span><br>
-					<br>
-					X: <input id="B0"></input><br>
-					O: <input id="B1"></input><br>
-					&#9633;: <input id="B2"></input><br>
-					&#9650;: <input id="B3"></input><br>
-					L1:<input id="B4"></input><br>
-					R1:<input id="B5"></input><br>
-					L2:<input id="B6"></input><br>
-					R2:<input id="B7"></input><br>
-					SH:<input id="B8"></input><br>
-					ST:<input id="B9"></input><br>
-					L3:<input id="B10"></input><br>
-					R3:<input id="B11"></input><br>
-					&#8593;: <input id="B12"></input><br>
-					&#8595;: <input id="B13"></input><br>
-					&#8592;: <input id="B14"></input><br>
-					&#8594;: <input id="B15"></input><br>
-					H: <input id="B16"></input><br>
-					C: <input id="B17"></input><br><br>
-					LX:<input id="LeftStickX"></input><br>
-					LY:<input id="LeftStickY"></input><br>
-					RX:<input id="RightStickX"></input><br>
-					RY:<input id="RightStickY"></input><br>
-					<br>
-					<br>
-					Degrees: <span id="degrees">0</span>
-					Radiants: <span id="radiant">0</span>
-					Magnitude: <span id="magnitude">0</span>
-					<br><br>
-					<button id="JoyStickSwap" onclick="SwapJoystick()">RightStick</button>
-				</div>
+		<div> 
+			<div id="joy3Div"></div>
+			<span id="GamepadStatus"></span>
+			<div >
+				X :<input id="joyX" type="text" /> FR-BL: <span id="FR-BL">0</span></br>
+				Y :<input id="joyY" type="text" /> FL-BR: <span id="FL-BR">0</span><br>
+				<br>
+				X: <input id="B0"></input><br>
+				O: <input id="B1"></input><br>
+				&#9633;: <input id="B2"></input><br>
+				&#9650;: <input id="B3"></input><br>
+				L1:<input id="B4"></input><br>
+				R1:<input id="B5"></input><br>
+				L2:<input id="B6"></input><br>
+				R2:<input id="B7"></input><br>
+				SH:<input id="B8"></input><br>
+				ST:<input id="B9"></input><br>
+				L3:<input id="B10"></input><br>
+				R3:<input id="B11"></input><br>
+				&#8593;: <input id="B12"></input><br>
+				&#8595;: <input id="B13"></input><br>
+				&#8592;: <input id="B14"></input><br>
+				&#8594;: <input id="B15"></input><br>
+				H: <input id="B16"></input><br>
+				C: <input id="B17"></input><br><br>
+				LX:<input id="LeftStickX"></input><br>
+				LY:<input id="LeftStickY"></input><br>
+				RX:<input id="RightStickX"></input><br>
+				RY:<input id="RightStickY"></input><br>
+				<br>
+				<br>
+				Degrees: <span id="degrees">0</span>
+				Radiants: <span id="radiant">0</span>
+				Magnitude: <span id="magnitude">0</span>
+				<br><br>
+				<button id="JoyStickSwap" onclick="SwapJoystick()">RightStick</button>
 			</div>
-			<div>
-				<div class="p-2 grid gap-2 grid-cols-1">
-					<div id="joy3Div">
-					</div>
-					<div>
-						<span class="float-right mx-12 px-9 dark:text-white">Successfully connected</span>
-					</div>
-				</div>
-			</div>
-			<div>Three</div>
-			<div>Four</div>
 		</div>
 	</body>
 	<script>
 		document.addEventListener("DOMContentLoaded", function () {
-    		createJoystick("float-right hover:cursor-pointer ring-2 ring-gray dark:ring-white-gray rounded-3xl m-4");
+    		createJoystick("mx-auto hover:cursor-pointer ring-2 ring-gray dark:ring-white-gray rounded-3xl mt-4");
 		});
 	</script>
 </html>

@@ -14,12 +14,12 @@ module.exports = {
       'silver': '#ecebff',
       'bubble-gum': '#ff77e9',
       'bermuda': '#78dcca',
-      'black': '#000000',
+      'black': '#0d0d0d',
       'sky' : '#004dc9',
       'white-sky': '#ecfeff',
       'gray': '#a59e92',
       'white-gray' : '#dfdcd8',
-      'black-gray' : '#0d0d0d'
+      'black-gray' : '#1c1c1c'
     },
   },
   plugins: [],
