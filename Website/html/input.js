@@ -22,8 +22,8 @@ var JoystickSwapStatus = true //true leftJoystick false Right Joystick
 var degrees
 var radiants
 var magnitude
-var FrBl
-var FlBr
+export var FrBl
+export var FlBr
 var differenceIntExtCircle = 2/3
 var Joy
 var TriggerSwapStatus = true //true left Trigger false Right Trigger
@@ -372,8 +372,7 @@ var JoyStick = (function(container, parameters, callback, classname)
     };
 });
 
-
-function createJoystick(classname) {
+export function createJoystick(classname) {
     Joy = new JoyStick('joy3Div', "", "", classname);
     updateJoystickColor()
 	var joyX = document.getElementById("joyX");

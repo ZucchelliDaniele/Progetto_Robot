@@ -5,7 +5,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link href="../dist/output.css" rel="stylesheet">
 		<script src="main.js"></script>
-		<script src="input.js"></script>
+		<script type="module" src="input.js"></script>
+		<script type="module" src="server.js"></script>
 		<style>
 			/* Hide the scrollbar */
 			::-webkit-scrollbar {
@@ -216,6 +217,9 @@
 		<!-- body -->
 		<div> 
 			<div id="joy3Div"></div>
+			<div class="mx-auto">
+				<span class="mx-auto dark:text-white">Successfully connected</span>
+			</div>
 			<span id="GamepadStatus"></span>
 			<div >
 				X :<input id="joyX" type="text" /> FR-BL: <span id="FR-BL">0</span></br>
@@ -253,9 +257,10 @@
 			</div>
 		</div>
 	</body>
-	<script>
+	<script type="module">
+		import { createJoystick } from './input.js';
 		document.addEventListener("DOMContentLoaded", function () {
-    		createJoystick("mx-auto hover:cursor-pointer ring-2 ring-gray dark:ring-white-gray rounded-3xl mt-4");
+    		createJoystick("mx-auto hover:cursor-pointer ring-2 ring-gray dark:ring-white-gray rounded-3xl m-4");
 		});
 	</script>
 </html>
