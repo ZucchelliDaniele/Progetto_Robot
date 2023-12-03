@@ -32,3 +32,14 @@ Il sistema deve riconoscere un ampia gamma di dispositivi per facilitare l'utili
 * ### Presa di oggetti
 * Il robot deve avere un gancio per la presa di oggetti (gancio manuale o non)
 ![Alt UML](https://yuml.me/diagram/usecase/[Visitor]-(Login),(Login)<(Contact%20Staff),[Visitor]-(Register),[Visitor]-(Buy%20Robot),(Buy%20Robot)>(Contact%20Staff),(Login)<(Reset%20Password),[Registered%20User]-(Add%20Robot),[Registered%20User]-(Remove%20Robot),(Add%20Robot)<(See%20Analytics),(Add%20Robot)<(Control%20Robot),[Registered%20User]-(Use%20Remote%20Connected%20Phone%20/%20PC),(Use%20Remote%20Connected%20Phone%20/%20PC)<(Use%20Gamepad),(Control%20Robot)<(Use%20Gamepad),[Office%20Staff]-(Add%20functionalities),)
+
+# Value Proposition
+## Semplifica il tuo lavoro con RoboPi
+### Lavoro preciso e facile
+Semplifica i tuoi lavori tramite RoboPi, un robot automatizzato con interfaccia web utilizzabile da ogni dispositivo. Personalizza il tuo lavoro nel metodo più semplice tramite movimenti precisi e veloci. Controlla il tuo robo a distanza in tempo reale.
+###Caratteristiche
+* Sistema Omnidirezionale
+* Telecamera grandangolare ad alta risoluzione
+* Visione Notturna
+* Controllo da remoto da più dispositivi
+* Sistema preciso con previsioni in tempo reale
