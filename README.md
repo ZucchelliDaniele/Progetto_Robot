@@ -36,7 +36,7 @@ Il sistema deve riconoscere un ampia gamma di dispositivi per facilitare l'utili
 # Value Proposition
 ## Semplifica il tuo lavoro con RoboPi
 ### Lavoro preciso e facile
-Semplifica i tuoi lavori tramite RoboPi, un robot automatizzato con interfaccia web utilizzabile da ogni dispositivo. Personalizza il tuo lavoro nel metodo più semplice tramite movimenti precisi e veloci. Controlla il tuo robo a distanza in tempo reale tramite 4 ruote motrici con gestione dei movimenti distinti che permettono movimenti in ogni direzione. Vivi il tuo lavoro vedendolo in tempo reale tramite la telecamera grandangolare ad alta qualità. Sfrutta il tuo robo anche al buio o in spazi ombreggiati tramite la visione notturna. 
+Semplifica i tuoi lavori tramite RoboPi, un robot automatizzato con interfaccia web utilizzabile da ogni dispositivo. Personalizza il tuo lavoro nel metodo più semplice tramite movimenti precisi e veloci. Controlla il tuo robot a distanza in tempo reale tramite 4 ruote motrici con gestione dei movimenti distinti che permettono movimenti in ogni direzione. Vivi il tuo lavoro vedendolo in tempo reale tramite la telecamera grandangolare ad alta qualità. Sfrutta il tuo robot anche al buio o in spazi ombreggiati tramite la visione notturna. 
 ### Caratteristiche
 * Sistema Omnidirezionale
 * Telecamera grandangolare ad alta risoluzione
