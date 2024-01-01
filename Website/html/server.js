@@ -27,7 +27,7 @@ function Joystick() {
             Joystick();
             clearInterval(intervalId);
           }
-        }, 0); // Adjust the interval as needed
+        }, 50); // Adjust the interval as needed
       });
       
       ws.addEventListener('message', (event) => {

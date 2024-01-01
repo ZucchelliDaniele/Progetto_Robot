@@ -13,8 +13,13 @@ let StickStatus =
 
 var deadZoneValue = 20
 
-var movedX
-var movedY
+var change_theme_color_button_value = 0
+export var movedX
+export var movedY
+export var X = 0
+export var Y = 0
+setInterval(function(){ X=Joy.GetX(); });
+setInterval(function(){ Y=Joy.GetY(); });
 var height
 var width
 var pressed
@@ -375,10 +380,12 @@ var JoyStick = (function(container, parameters, callback, classname)
 export function createJoystick(classname) {
     Joy = new JoyStick('joy3Div', "", "", classname);
     updateJoystickColor()
-	var joyX = document.getElementById("joyX");
-	var joyY = document.getElementById("joyY");
-	setInterval(function(){ joyX.value=Joy.GetX(); });
-	setInterval(function(){ joyY.value=Joy.GetY(); });
+    if (window.location.pathname.includes("input.html")) {
+        var joyX = document.getElementById("joyX");
+        var joyY = document.getElementById("joyY");
+        setInterval(function(){ joyX.value=Joy.GetX(); });
+        setInterval(function(){ joyY.value=Joy.GetY(); });
+    }
     setInterval(function(){
         degrees = calcAngleDegrees(Joy.GetX(), Joy.GetY())
         radiants = calcAngleDegrees(Joy.GetX(), Joy.GetY()) / 180.0 * Math.PI
@@ -404,12 +411,13 @@ export function createJoystick(classname) {
         if(magnitude>1) magnitude = 1
         FrBl = Math.round((Math.sin((radiants - (1/4) * Math.PI).toFixed(5))) * 100000 * magnitude) / 100000
         FlBr = Math.round((Math.sin((radiants + (1/4) * Math.PI).toFixed(5))) * 100000 * magnitude) / 100000
-        document.getElementById("degrees").innerHTML= degrees
-        document.getElementById("radiant").innerHTML= radiants
-        document.getElementById("magnitude").innerHTML= magnitude
-        document.getElementById("FR-BL").innerHTML = FrBl
-        document.getElementById("FL-BR").innerHTML = FlBr
-
+        if (window.location.pathname.includes("input.html")) {
+            document.getElementById("degrees").innerHTML= degrees
+            document.getElementById("radiant").innerHTML= radiants
+            document.getElementById("magnitude").innerHTML= magnitude
+            document.getElementById("FR-BL").innerHTML = FrBl
+            document.getElementById("FL-BR").innerHTML = FlBr
+        }
         updateJoystickColor()
     });
 }
@@ -424,8 +432,10 @@ function updateGamepadState() {
     // Compare button values and update HTML elements
     for (let i = 0; i < gamepad.buttons.length; i++) {
         const buttonValue = gamepad.buttons[i].value;
-        document.getElementById(`B${i}`).value = 0;
-        document.getElementById(`B${i}`).value = buttonValue;
+        if (window.location.pathname.includes("input.html")) {
+            document.getElementById(`B${i}`).value = 0;
+            document.getElementById(`B${i}`).value = buttonValue;
+        }
         if(i==10 && buttonValue==1 && JoystickSwapStatus == false) {
             SwapJoystick()
         }
@@ -444,6 +454,13 @@ function updateGamepadState() {
         if(i==10 && buttonValue==1|| i==11 && buttonValue==1) {
             JoystickOrTrigger=true
         }
+        if(i==17 && buttonValue==1 && change_theme_color_button_value == 0) {
+            change_theme_color()
+            change_theme_color_button_value = 1
+        }
+        if(i==17 && buttonValue==0 && change_theme_color_button_value == 1) {
+            change_theme_color_button_value = 0
+        }
         leftTriggerValue = gamepad.buttons[6].value
         rightTriggerValue = gamepad.buttons[7].value
     }
@@ -456,10 +473,12 @@ function updateGamepadState() {
     const rightStickY = gamepad.axes[3];
 
     // Update HTML elements with analog values
-    document.getElementById("LeftStickX").value = leftStickX;
-    document.getElementById("LeftStickY").value = -leftStickY;
-    document.getElementById("RightStickX").value = rightStickX;
-    document.getElementById("RightStickY").value = -rightStickY;
+    if (window.location.pathname.includes("input.html")) {
+        document.getElementById("LeftStickX").value = leftStickX;
+        document.getElementById("LeftStickY").value = -leftStickY;
+        document.getElementById("RightStickX").value = rightStickX;
+        document.getElementById("RightStickY").value = -rightStickY;
+    }
 
     var valueX
     var valueY
@@ -496,7 +515,9 @@ window.addEventListener("gamepadconnected", (e) => {
     e.gamepad.axes.length
   );
 
-  document.getElementById("GamepadStatus").innerHTML="Gamepad connected at index"+ e.gamepad.index+": "+ e.gamepad.id+". "+  e.gamepad.buttons.length +" buttons, "+e.gamepad.axes.length+" axes."
+  if (window.location.pathname.includes("input.html")) {
+    document.getElementById("GamepadStatus").innerHTML="Gamepad connected at index"+ e.gamepad.index+": "+ e.gamepad.id+". "+  e.gamepad.buttons.length +" buttons, "+e.gamepad.axes.length+" axes."
+  }
 
   // Start updating gamepad state
   updateGamepadState();
@@ -509,18 +530,24 @@ window.addEventListener("gamepaddisconnected", (e) => {
     e.gamepad.index,
     e.gamepad.id
   );
-  document.getElementById("GamepadStatus").innerHTML= "Gamepad disconnected from index "+e.gamepad.index+": "+e.gamepad.id
+  if (window.location.pathname.includes("input.html")) {
+    document.getElementById("GamepadStatus").innerHTML= "Gamepad disconnected from index "+e.gamepad.index+": "+e.gamepad.id
+  }
 });
 
 function SwapJoystick() {
-    if(JoystickSwapStatus) {
-        JoystickSwapStatus=false
-        document.getElementById("JoyStickSwap").innerText = "LeftStick"
-    }
-    else {
-        JoystickSwapStatus = true
-        document.getElementById("JoyStickSwap").innerText = "RightStick"
-    }
+        if(JoystickSwapStatus) {
+            JoystickSwapStatus=false
+            if (window.location.pathname.includes("input.html")) {
+                document.getElementById("JoyStickSwap").innerText = "LeftStick"
+            }
+        }
+        else {
+            JoystickSwapStatus = true
+            if (window.location.pathname.includes("input.html")) {
+                document.getElementById("JoyStickSwap").innerText = "RightStick"
+            }
+        }
 }
 
 function SwapTrigger() {

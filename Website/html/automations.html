@@ -5,8 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link href="../dist/output.css" rel="stylesheet">
 		<script src="./main.js"></script>
-		<script src="./input.js" type="module" ></script>
-		<script src="./server.js" type="module" ></script>
+		<title>RoboPi</title>
 		<style>
 			/* Hide the scrollbar */
 			::-webkit-scrollbar {
@@ -219,52 +218,71 @@
 			  </header>			  
 		  </h1>
 		<!-- body -->
-		<div> 
-			<div id="joy3Div"></div>
-			<div class="mx-auto">
-				<span id="ConnectionState" class="mx-auto dark:text-white">Trying to Connect</span>
+		<div class="py-2 px-3 grid gap-2 grid-cols-2" id="Body">
+			<div>
+				<div>
+					<!-- 1 -->
+				</div>
 			</div>
-			<span id="GamepadStatus"></span>
-			<div >
-				X :<input id="joyX" type="text" /> FR-BL: <span class="text-black dark:text-white" id="FR-BL">0</span></br>
-				Y :<input id="joyY" type="text" /> FL-BR: <span class="text-black dark:text-white" id="FL-BR">0</span><br>
-				<br>
-				X: <input id="B0"></input><br>
-				O: <input id="B1"></input><br>
-				&#9633;: <input id="B2"></input><br>
-				&#9650;: <input id="B3"></input><br>
-				L1:<input id="B4"></input><br>
-				R1:<input id="B5"></input><br>
-				L2:<input id="B6"></input><br>
-				R2:<input id="B7"></input><br>
-				SH:<input id="B8"></input><br>
-				ST:<input id="B9"></input><br>
-				L3:<input id="B10"></input><br>
-				R3:<input id="B11"></input><br>
-				&#8593;: <input id="B12"></input><br>
-				&#8595;: <input id="B13"></input><br>
-				&#8592;: <input id="B14"></input><br>
-				&#8594;: <input id="B15"></input><br>
-				H: <input id="B16"></input><br>
-				C: <input id="B17"></input><br><br>
-				LX:<input id="LeftStickX"></input><br>
-				LY:<input id="LeftStickY"></input><br>
-				RX:<input id="RightStickX"></input><br>
-				RY:<input id="RightStickY"></input><br>
-				<br>
-				<br>
-				Degrees: <span id="degrees">0</span>
-				Radiants: <span id="radiant">0</span>
-				Magnitude: <span id="magnitude">0</span>
-				<br><br>
-				<button id="JoyStickSwap" onclick="SwapJoystick()">RightStick</button>
+			<div>
+				<div class="overflow-hidden bg-gray dark:bg-black-gray rounded-3xl ring-2 ring-black dark:ring-white flex-col items-center justify-center">
+                    <!-- TITLE -->
+                    <div class="dark:text-white text-center text-xl font-bold my-3">
+                        <span>Chat GPT-4 Turbo</span>
+                    </div>
+                    <!-- TEXT -->
+                    <div class="overflow-auto h-[70vh]">
+                        <div class="dark:text-white text-center mx-20 my-3">
+                            <span>I am quite excited about the advancements in technology, as it has the potential to improve our lives significantly. The development of artificial intelligence and machine learning can lead to more efficient solutions to complex problems, making tasks easier for both individuals and businesses alike. Additionally, innovations such as virtual reality and augmented reality have opened up new avenues for communication, entertainment, and education. However, it is crucial that we also address the ethical implications of these advancements and ensure that they are used responsibly to benefit society as a whole.</span>
+                        </div>
+                    </div>
+                    <!-- INPUT -->
+                    <div class="flex items-center justify-center my-3 w-72 mx-auto relative">
+                        <input 
+                            type="text" 
+                            placeholder="Type here..." 
+                            class="bg-gray dark:bg-black-gray ring-2 dark:ring-white dark:text-white text-black ring-black rounded-xl placeholder-black dark:placeholder-white p-2 w-72 focus:outline-0 focus:ring pr-10"
+                            id="ChatInput"
+                        >
+                        <img 
+                            src="your-image-path.png" 
+                            alt="Image" 
+                            class="cursor-pointer absolute right-2 top-2 h-6 w-6"
+                            onclick = "clear_input()"
+                        >
+                    </div>                                     
+                </div>
+                                                                           
+			</div>
+			<div>
+				<div>
+					<!-- 3 -->
+				</div>
+			</div>
+			<div>
+				<div>
+					<!-- 4 -->
+				</div>
 			</div>
 		</div>
 	</body>
-	<script type="module">
-		import { createJoystick } from './input.js';
-		document.addEventListener("DOMContentLoaded", function () {
-    		createJoystick("mx-auto hover:cursor-pointer ring-2 ring-gray dark:ring-white-gray rounded-3xl m-4");
-		});
-	</script>
+    <script>
+        document.getElementById('ChatInput').addEventListener('keyup', function(event) {
+            // Check if the Enter key (keyCode 13) is pressed
+            if (event.keyCode === 13) {
+                // Clear the input value
+                this.value = '';
+            }
+        });
+        function clear_input(){
+            document.getElementById('ChatInput').value = '';
+        }
+        var isMobileView = window.matchMedia('(max-width: 1023px)').matches;
+		if(isMobileView) {
+			document.getElementById("Body").className = "py-2 px-3"
+		}
+		else {
+			document.getElementById("Body").className = "py-2 px-3 grid gap-2 grid-cols-2"
+		}
+    </script>
 </html>

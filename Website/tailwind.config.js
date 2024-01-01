@@ -19,7 +19,7 @@ module.exports = {
       'white-sky': '#ecfeff',
       'gray': '#a59e92',
       'white-gray' : '#dfdcd8',
-      'black-gray' : '#1c1c1c'
+      'black-gray' : '#1c1c1c',
     },
   },
   plugins: [],
