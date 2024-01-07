@@ -5,6 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link href="../dist/output.css" rel="stylesheet">
 		<script src="./main.js"></script>
+		<script src="./chat.js"></script>
 		<title>RoboPi</title>
 		<style>
 			/* Hide the scrollbar */
@@ -19,7 +20,7 @@
 			<header>			
 				<nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
 				  <div class="flex lg:flex-1">
-					<a class="-m-1.5 p-1.5">
+					<a class="-m-1.5 p-1.5" onclick="change_img_color()">
 					  <span class="sr-only">Your Company</span>
 					  <img id="theme_mode" class="h-7 w-auto flex-none items-center justify-center rounded-lg bg-gray-50 hover:cursor-pointer ring-2 hover:ring-black dark:hover:ring-white dark:ring-black ring-gray" src="" alt="" onclick="change_theme_color()">
 					</a>
@@ -157,6 +158,7 @@
 					<a href="#" class="text-sm font-semibold leading-6 dark:text-white">Company</a>
 				  </div>
 				  <div class="hidden lg:flex lg:flex-1 lg:justify-end dark:text-white text-black">
+					<img id="wifi" src="./images/0_wifi_white.png" class="h-7 my-1 mr-4">
 					<h1 id="clock">NotWorking</h1>
 				  </div>
 				</nav>
@@ -225,31 +227,31 @@
 				</div>
 			</div>
 			<div>
-				<div class="overflow-hidden bg-gray dark:bg-black-gray rounded-3xl ring-2 ring-black dark:ring-white flex-col items-center justify-center">
+				<div class="overflow-hidden bg-gray dark:bg-black rounded-3xl ring-2 ring-black dark:ring-white flex-col items-center justify-center m-6">
                     <!-- TITLE -->
-                    <div class="dark:text-white text-center text-xl font-bold my-3">
+                    <div class="dark:text-white text-center text-2xl font-bold my-3">
                         <span>Chat GPT-4 Turbo</span>
                     </div>
                     <!-- TEXT -->
-                    <div class="overflow-auto h-[70vh]">
-                        <div class="dark:text-white text-center mx-20 my-3">
-                            <span>I am quite excited about the advancements in technology, as it has the potential to improve our lives significantly. The development of artificial intelligence and machine learning can lead to more efficient solutions to complex problems, making tasks easier for both individuals and businesses alike. Additionally, innovations such as virtual reality and augmented reality have opened up new avenues for communication, entertainment, and education. However, it is crucial that we also address the ethical implications of these advancements and ensure that they are used responsibly to benefit society as a whole.</span>
-                        </div>
+                    <div class="overflow-auto h-[70vh]" id="Chat">					
                     </div>
                     <!-- INPUT -->
                     <div class="flex items-center justify-center my-3 w-72 mx-auto relative">
                         <input 
-                            type="text" 
+                            type="text"
                             placeholder="Type here..." 
-                            class="bg-gray dark:bg-black-gray ring-2 dark:ring-white dark:text-white text-black ring-black rounded-xl placeholder-black dark:placeholder-white p-2 w-72 focus:outline-0 focus:ring pr-10"
+                            class="bg-white-gray dark:bg-black-gray ring-2 dark:ring-white dark:text-white text-black ring-black rounded-xl placeholder-black dark:placeholder-white p-2 w-72 focus:outline-0 focus:ring pr-10"
                             id="ChatInput"
                         >
                         <img 
-                            src="your-image-path.png" 
+							id="SendImage"
+                            src="" 
                             alt="Image" 
-                            class="cursor-pointer absolute right-2 top-2 h-6 w-6"
-                            onclick = "clear_input()"
-                        >
+                            class="cursor-pointer absolute right-2 top-2 h-6 w-6 dark:hover:ring-white ring-2 rounded-lg hover:ring-black ring-white-gray dark:ring-black-gray"
+                            onclick = "send_input()"
+							onmousedown="this.className = 'cursor-pointer absolute right-2 top-2 h-6 w-6 dark:hover:ring-white ring rounded-lg hover:ring-black ring-white-gray dark:ring-black-gray'"
+							onmouseup="this.className = 'cursor-pointer absolute right-2 top-2 h-6 w-6 dark:hover:ring-white ring-2 rounded-lg hover:ring-black ring-white-gray dark:ring-black-gray'"
+							>
                     </div>                                     
                 </div>
                                                                            
@@ -269,14 +271,11 @@
     <script>
         document.getElementById('ChatInput').addEventListener('keyup', function(event) {
             // Check if the Enter key (keyCode 13) is pressed
-            if (event.keyCode === 13) {
+            if (event.key == "Enter") {
                 // Clear the input value
-                this.value = '';
+                send_input();
             }
         });
-        function clear_input(){
-            document.getElementById('ChatInput').value = '';
-        }
         var isMobileView = window.matchMedia('(max-width: 1023px)').matches;
 		if(isMobileView) {
 			document.getElementById("Body").className = "py-2 px-3"

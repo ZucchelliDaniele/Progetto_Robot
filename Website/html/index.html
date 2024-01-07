@@ -16,13 +16,13 @@
 			}
 		</style>
 	</head>
-	<body class="bg-white-gray dark:bg-black-gray transition ease-in dark:ease-out duration-1000">
+	<body class="test bg-white-gray dark:bg-black-gray transition ease-in dark:ease-out duration-1000">
 		<!-- header -->
 		<h1 class="text-3xl font-bold bg-gray dark:bg-black transition ease-in dark:ease-out duration-700">
 			<header>			
 				<nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
 				  <div class="flex lg:flex-1">
-					<a class="-m-1.5 p-1.5">
+					<a class="-m-1.5 p-1.5" onclick="change_theme_color_local()">
 					  <span class="sr-only">Your Company</span>
 					  <img id="theme_mode" class="h-7 w-auto flex-none items-center justify-center rounded-lg bg-gray-50 hover:cursor-pointer ring-2 hover:ring-black dark:hover:ring-white dark:ring-black ring-gray" src="" alt="" onclick="change_theme_color()">
 					</a>
@@ -160,6 +160,7 @@
 					<a href="#" class="text-sm font-semibold leading-6 dark:text-white">Company</a>
 				  </div>
 				  <div class="hidden lg:flex lg:flex-1 lg:justify-end dark:text-white text-black">
+					<img id="wifi" src="./images/0_wifi_white.png" class="h-7 my-1 mr-4">
 					<h1 id="clock">NotWorking</h1>
 				  </div>
 				</nav>
@@ -222,25 +223,30 @@
 		  </h1>
 		<!-- body -->
 		<div class="py-2 px-3 grid gap-2 grid-cols-2" id="Body">
+			<!-- 1 -->
 			<div>
 				<div>
 					<canvas id="xy"></canvas>
 				</div>
 			</div>
+			<!-- 2 -->
 			<div>
-				<div class="p-2 grid gap-2 grid-cols-1">
-					<div id="joy3Div">
+				<div id="webcamJoystickDiv" class="grid grid-cols-2 min-w-fit">
+					<div id="webcamDiv" class="items-center min-w-fit ring-2 ml-5 rounded-xl m-2 flex ring-gray dark:ring-white-gray rounded-3xl">
+						<img id="webcam" class="p-10 mx-auto align-center align-middle" src="./images/no_video_white.png">
 					</div>
-					<div>
-						<span id="ConnectionState" class="float-right mx-12 px-9 dark:text-white">Trying to Connect</span>
+					<div id="joy3Div">
+							
 					</div>
 				</div>
 			</div>
+			<!-- 3 -->
 			<div>
 				<div>
 					<canvas id="FlBr_FrBl"></canvas>
 				</div>
 			</div>
+			<!-- 4 -->
 			<div>
 				<div>
 					<canvas id="HoursChart"></canvas>
@@ -252,200 +258,393 @@
 	<script type="module">
 		//Joystick
 		"use strict"
-		import { createJoystick } from './input.js';
+		import { createJoystick} from './input.js';
 		var class_name;
 		var isMobileView = window.matchMedia('(max-width: 1023px)').matches;
 		if(isMobileView) {
-			class_name= "mx-auto hover:cursor-pointer ring-2 ring-gray dark:ring-white-gray rounded-3xl"
+			document.getElementById("webcamJoystickDiv").classList = "grid grid-rows-2 min-h-full min-w-full"
+			class_name= "mx-auto items-center align-center hover:cursor-pointer ring-2 ring-gray dark:ring-white-gray rounded-3xl"
+			document.getElementById("webcamDiv").classList ="items-center min-w-fit ring-2 rounded-xl my-4 mx-2 align-middle ring-gray dark:ring-white-gray rounded-3xl"
+		
 		}
 		else {
-			class_name = "float-right hover:cursor-pointer ring-2 ring-gray dark:ring-white-gray rounded-3xl m-4"
+			class_name = "float-right hover:cursor-pointer ring-2 ring-gray dark:ring-white-gray rounded-3xl my-4 mr-1"
+			document.getElementById("webcamDiv").classList ="items-center min-w-fit ring-2 rounded-xl ml-8 m-2 align-middle ring-gray dark:ring-white-gray rounded-3xl"
 		}
 		document.addEventListener("DOMContentLoaded", function () {
     		createJoystick(class_name);
 		});
+		window.JoystickUpdate = function () {
+			document.getElementById("joy3Div").innerHTML = ""
+    		createJoystick(class_name)
+		}
 	</script>
 
 	<script type="module">
 		"use strict"
 		import { X, Y } from './input.js';
 		import { FlBr, FrBl } from './input.js';
-		var isMobileView = window.matchMedia('(max-width: 1023px)').matches;
-		if(isMobileView) {
-			document.getElementById("Body").className = "py-2 px-3"
-		}
-		else {
-			document.getElementById("Body").className = "py-2 px-3 grid gap-2 grid-cols-2"
-		}
-		const xy = document.getElementById('xy');
-		const FlBr_FrBl = document.getElementById('FlBr_FrBl');
-		const Hours = document.getElementById('HoursChart');
+		var days = ["18/12/2023", "19/12/2023", "20/12/2023", "21/12/2023", "22/12/2023", "23/12/2023", "24/12/2023"]
 		var x = []
 		var y = []
 		var FlBr_ = []
 		var FrBl_ = []
 		var time = 1;
 		var labels = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]
-		var days = ["18/12/2023", "19/12/2023", "20/12/2023", "21/12/2023", "22/12/2023", "23/12/2023", "24/12/2023"]
-		//XY Chart
-		const xyChart = new Chart(xy, {
-		type: 'line',
-		data: {
-			labels: labels,
-			datasets: 
-			[{
-				label: 'X',
-				data: x,
-				borderWidth: 1,
-				// borderColor: '#36A2EB',
-      			// backgroundColor: '#9BD0F5',
-				},
-				{
-				label: 'Y',
-				data: y,
-				borderWidth: 1,
-				// borderColor: '#1da711',
-      			// backgroundColor: '#46eb37',
-				}
-			]
-		},
-		options: {
-			scales: {
-				y: {
-					min: -100,
-					max: 100,
-				},
-			},
-			plugins: {
-				legend: {
-					position: 'top',
-					display: true,
-				},
-				title: {
-					display: true,
-					text: 'JoyStick XY Coordinates'
-				}
+		window.Charts = function(update = false) {
+			var isMobileView = window.matchMedia('(max-width: 1023px)').matches;
+			if(isMobileView) {
+				document.getElementById("Body").className = "py-2 px-3"
 			}
-		}
-		});
-		//FlBr and FrBl Chart
-		const FlBr_FrBl_Chart = new Chart(FlBr_FrBl, {
-		type: 'line',
-		data: {
-			labels: labels,
-			datasets: 
-			[{
-				label: 'FlBr',
-				data: FlBr_,
-				borderWidth: 1,
-				// borderColor: '#36A2EB',
-      			// backgroundColor: '#9BD0F5',
-				},
-				{
-				label: 'FrBl',
-				data: FrBl_,
-				borderWidth: 1,
-				// borderColor: '#1da711',
-      			// backgroundColor: '#46eb37',
-				}
-			]
-		},
-		options: {
-			scales: {
-				y: {
-					min: -1,
-					max: 1,
-				},
-			},
-			plugins: {
-				legend: {
-					position: 'top',
-					display: true,
-				},
-				title: {
-					display: true,
-					text: 'Front Left and Back Right Values and Front Right and Back Left Values'
-				}
+			else {
+				document.getElementById("Body").className = "py-2 px-3 grid gap-2 grid-cols-2"
 			}
-		}
-		});
-		//Hours per day Chart
-		const HoursChart = new Chart(Hours, {
-			type: 'bar',
+			const xy = document.getElementById('xy');
+			const FlBr_FrBl = document.getElementById('FlBr_FrBl');
+			//XY Chart
+			window.xyChart = new Chart(xy, {
+			type: 'line',
 			data: {
-			labels: days,
-			datasets: 
+				labels: labels,
+				datasets: 
 				[{
-					label: 'Hours Standby',
-					data: [0,3,4,1,5,6,3],
+					label: 'X',
+					data: x,
 					borderWidth: 2,
-					borderRadius: 5,
-					borderSkipped: false,
 					// borderColor: '#36A2EB',
 					// backgroundColor: '#9BD0F5',
-				},
-				{
-					label: 'Hours Moving',
-					data: [1,2,5,2,4,7,2],
+					},
+					{
+					label: 'Y',
+					data: y,
 					borderWidth: 2,
-					borderRadius: Number.MAX_VALUE,
-					borderSkipped: false,
-					// borderColor: '#36A2EB',
-					// backgroundColor: '#9BD0F5',
-				}
+					// borderColor: '#1da711',
+					// backgroundColor: '#46eb37',
+					}
 				]
 			},
 			options: {
-				responsive: true,
+				scales: {
+					x: {
+						grid: {
+							color: function() {
+								if (document.documentElement.classList.contains('dark')) {
+									return '#707375';
+								} else {
+									return '#C8C6C2';
+								}
+							},
+						}
+					},
+					y: {
+						min: -100,
+						max: 100,
+						grid: {
+							color: function() {
+								if (document.documentElement.classList.contains('dark')) {
+									return '#707375';
+								} else {
+									return '#C8C6C2';
+								}
+							},
+						}
+					},
+				},
 				plugins: {
 					legend: {
 						position: 'top',
 						display: true,
+						labels: {
+							color: function() {
+								if (document.documentElement.classList.contains('dark')) {
+									return '#fff';
+								} else {
+									return '#747473';
+								}
+							},
+						},
 					},
 					title: {
 						display: true,
-						text: 'Hours per day'
+						text: 'JoyStick XY Coordinates',
+						color: function() {
+								if (document.documentElement.classList.contains('dark')) {
+									return '#ffffff';
+								} else {
+									return '#666666';
+								}
+							},
 					}
-				},
-				scales: {
-					y: {
-						min: 0,
-						max: 24,
-					},
+				}
 			}
-			},
 			});
-		//Update the chart of XY coordinates Joysticks
+			//FlBr and FrBl Chart
+			window.FlBr_FrBl_Chart = new Chart(FlBr_FrBl, {
+			type: 'line',
+			data: {
+				labels: labels,
+				datasets: 
+				[{
+					label: 'FlBr',
+					data: FlBr_,
+					borderWidth: 2,
+					// borderColor: '#36A2EB',
+					// backgroundColor: '#9BD0F5',
+					},
+					{
+					label: 'FrBl',
+					data: FrBl_,
+					borderWidth: 2,
+					// borderColor: '#1da711',
+					// backgroundColor: '#46eb37',
+					}
+				]
+			},
+			options: {
+				scales: {
+					x: {
+						grid: {
+							color: function() {
+								if (document.documentElement.classList.contains('dark')) {
+									return '#707375';
+								} else {
+									return '#C8C6C2';
+								}
+							},
+						}
+					},
+					y: {
+						min: -1,
+						max: 1,
+						grid: {
+							color: function() {
+								if (document.documentElement.classList.contains('dark')) {
+									return '#707375';
+								} else {
+									return '#C8C6C2';
+								}
+							},
+						}
+					},
+				},
+				plugins: {
+					legend: {
+						position: 'top',
+						display: true,
+						labels: {
+							color: function() {
+								if (document.documentElement.classList.contains('dark')) {
+									return '#ffffff';
+								} else {
+									return '#747473';
+								}
+							},
+						},
+					},
+					title: {
+						display: true,
+						text: 'Front Left and Back Right Values and Front Right and Back Left Values',
+						color: function() {
+								if (document.documentElement.classList.contains('dark')) {
+									return '#ffffff';
+								} else {
+									return '#666666';
+								}
+							},
+					}
+				}
+			}
+			});
+			//Update the chart of XY coordinates Joysticks
+			const Hours = document.getElementById('HoursChart');
+			window.HoursChart = new Chart(Hours, {
+				type: 'bar',
+				data: {
+				labels: days,
+				datasets: 
+					[{
+						label: 'Hours Standby',
+						data: [0,3,4,1,5,6,3],
+						borderWidth: 2,
+						borderRadius: 5,
+						borderSkipped: false,
+						// borderColor: '#36A2EB',
+						// backgroundColor: '#9BD0F5',
+					},
+					{
+						label: 'Hours Moving',
+						data: [1,2,5,2,4,7,2],
+						borderWidth: 2,
+						borderRadius: Number.MAX_VALUE,
+						borderSkipped: false,
+						// borderColor: '#36A2EB',
+						// backgroundColor: '#9BD0F5',
+					}
+					]
+				},
+				options: {
+					responsive: true,
+					plugins: {
+						legend: {
+							position: 'top',
+							display: true,
+							labels: {
+							color: function() {
+								if (document.documentElement.classList.contains('dark')) {
+									return '#ffffff';
+								} else {
+									return '#747473';
+								}
+							},
+						},
+						},
+						title: {
+							display: true,
+							text: 'Hours per day',
+							color: function() {
+								if (document.documentElement.classList.contains('dark')) {
+									return '#ffffff';
+								} else {
+									return '#666666';
+								}
+							},
+						}
+					},
+					scales: {
+						x: {
+						grid: {
+							color: function() {
+								if (document.documentElement.classList.contains('dark')) {
+									return '#707375';
+								} else {
+									return '#C8C6C2';
+								}
+							},
+						}
+					},
+						y: {
+							min: 0,
+							max: 24,
+							grid: {
+							color: function() {
+								if (document.documentElement.classList.contains('dark')) {
+									return '#707375';
+								} else {
+									return '#C8C6C2';
+								}
+							},
+						}
+						},
+				}
+				},
+				});
+		}
+		Charts();
+		window.change_theme_color_local = function() {
+				var milliseconds = 0;
+				const animationUpdate = setInterval(() => {
+					HoursChart.update();
+					if(milliseconds >= 1000) {
+						clearInterval(animationUpdate);
+					}
+					milliseconds +=50;
+				}, 50);
+		}
 		setInterval(() => {
-			x.push(X);
-			if (x.length > 19) {
-				x.splice(0, 1);
-			}
-			y.push(Y);
-			if (y.length > 19) {
-				y.splice(0, 1);
-			}
-			time += 1;
-			if(time > 19) {
-				labels.push(time);
-			}
-			if(labels.length > 20) {
-				labels.splice(0, 1);
-			}
-			xyChart.update();
-		}, 1000);
-		//Update the chart of FlBr and FrBl Values
-		setInterval(() => {
-			FlBr_.push(FlBr);
-			if (FlBr_.length > 19) {
-				FlBr_.splice(0, 1);
-			}
-			FrBl_.push(FrBl);
-			if (FrBl_.length > 19) {
-				FrBl_.splice(0, 1);
-			}
-			FlBr_FrBl_Chart.update();
-		}, 1000);
+				x.push(X);
+				if (x.length > 19) {
+					x.splice(0, 1);
+				}
+				y.push(Y);
+				if (y.length > 19) {
+					y.splice(0, 1);
+				}
+				time += 1;
+				if(time > 19) {
+					labels.push(time);
+				}
+				if(labels.length > 20) {
+					labels.splice(0, 1);
+				}
+			}, 1000);
+			//Update the chart of FlBr and FrBl Values
+			setInterval(() => {
+				FlBr_.push(FlBr);
+				if (FlBr_.length > 19) {
+					FlBr_.splice(0, 1);
+				}
+				FrBl_.push(FrBl);
+				if (FrBl_.length > 19) {
+					FrBl_.splice(0, 1);
+				}
+			}, 1000);
 
+			setInterval(() => {
+				xyChart.update();
+			}, 100);
+
+			setInterval(() => {
+				FlBr_FrBl_Chart.update();
+			}, 100);
+	</script>
+	<script>
+		var loaded = false;
+		window.onload = function() {
+			loaded = true
+		}
+		window.addEventListener('resize', function(){ 
+			if(loaded) {
+				window.JoystickUpdate();
+				window.xyChart.destroy();
+				window.FlBr_FrBl_Chart.destroy();
+				window.HoursChart.destroy();
+				Charts();
+			}
+		});
 	</script>
 </html>
+
+<!-- var ctx3 = document.getElementById('chart3').getContext('2d');
+      var chart3 = new Chart(ctx3, {
+        type: 'line',
+        data: data,
+        options: {
+          aspectRatio: 1.75,
+          layout: {
+            padding: 14
+          },
+          legend: {
+            labels: {
+              fontColor: '#ccc',
+              generateLabels: generateLabels,
+              usePointStyle: true
+            }
+          },
+          tooltips: {
+            backgroundColor: 'rgba(255, 255, 255, 0.8)',
+            titleFontColor: '#000',
+            bodyFontColor: '#000'
+          },
+          scales: {
+            xAxes: [{
+              gridLines: {
+                color: 'rgba(255, 255, 255, 0.2)',
+                zeroLineColor: 'rgba(255, 255, 255, 0.5)'
+              },
+              ticks: {
+                fontColor: '#ccc'
+              }
+            }],
+            yAxes: [{
+              gridLines: {
+                color: 'rgba(255, 255, 255, 0.2)',
+                zeroLineColor: 'rgba(255, 255, 255, 0.5)'
+              },
+              ticks: {
+                fontColor: '#ccc'
+              }
+            }]
+          },
+          plugins: plugginOpts
+        }
+      }); -->

@@ -1,10 +1,12 @@
 "use strict"
 
 var HeaderDropDownMenu = true //true opened false closed
+var wifi_signal = -1
 
 document.addEventListener("DOMContentLoaded", function () {
     load_logo()
     updateClock()
+    load_wifi()
 });
 
 function change_theme_color() {
@@ -13,11 +15,25 @@ function change_theme_color() {
         localStorage.setItem("theme", "light");
         document.getElementById("theme_mode").src = "images/light.png"
         document.getElementById("theme_mode_Mobile_Menu").src = "images/light.png"
+        document.getElementById("wifi").src = "images/"+wifi_signal+"_wifi_black.png"
+        if (window.location.pathname.includes("automations.html")) {
+            document.getElementById("SendImage").src = "images/send_black.png"
+        }
+        if (window.location.pathname.includes("index.html")) {
+            document.getElementById("webcam").src = "./images/no_video_white.png"
+        }
     } else{
         localStorage.setItem("theme", "dark");
         document.documentElement.classList.add('dark')
         document.getElementById("theme_mode").src = "images/dark.png"
         document.getElementById("theme_mode_Mobile_Menu").src = "images/dark.png"
+        document.getElementById("wifi").src = "images/"+wifi_signal+"_wifi_white.png"
+        if (window.location.pathname.includes("automations.html")) {
+            document.getElementById("SendImage").src = "images/send_white.png"
+        }
+        if (window.location.pathname.includes("index.html")) {
+            document.getElementById("webcam").src = "./images/no_video_black.png"
+        }
     }
 }
 function load_theme_color() {
@@ -33,10 +49,31 @@ function load_logo() {
     if (localStorage.theme === 'dark') {
         document.getElementById("theme_mode").src = "images/dark.png"
         document.getElementById("theme_mode_Mobile_Menu").src = "images/dark.png"
+        if (window.location.pathname.includes("automations.html")) {
+            document.getElementById("SendImage").src = "images/send_white.png"
+        }
+        if (window.location.pathname.includes("index.html")) {
+            document.getElementById("webcam").src = "./images/no_video_black.png"
+        }
+        
     }
     else {
         document.getElementById("theme_mode").src = "images/light.png"
         document.getElementById("theme_mode_Mobile_Menu").src = "images/light.png"
+        if (window.location.pathname.includes("automations.html")) {
+            document.getElementById("SendImage").src = "images/send_black.png"
+        }
+        if (window.location.pathname.includes("index.html")) {
+            document.getElementById("webcam").src = "./images/no_video_white.png"
+        }
+    }
+}
+function load_wifi() {
+    if (localStorage.theme === 'dark') {
+        document.getElementById("wifi").src = "images/"+wifi_signal+"_wifi_white.png"
+    }
+    else {
+        document.getElementById("wifi").src = "images/"+wifi_signal+"_wifi_black.png"
     }
 }
 

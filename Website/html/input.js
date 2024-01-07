@@ -18,8 +18,6 @@ export var movedX
 export var movedY
 export var X = 0
 export var Y = 0
-setInterval(function(){ X=Joy.GetX(); });
-setInterval(function(){ Y=Joy.GetY(); });
 var height
 var width
 var pressed
@@ -41,6 +39,9 @@ var internalStrokeColor
 var externalLineWidth
 var externalStrokeColor
 var autoReturnToCenter
+var canvas
+var objContainer
+var context
 /**
  * @desc Principal object that draw a joystick, you only need to initialize the object and suggest the HTML container
  * @costructor
@@ -74,6 +75,9 @@ var JoyStick = (function(container, parameters, callback, classname)
                 width = width / 3
             }
         }
+        if(document.getElementById("joy3Div").clientWidth - 20 < width) {
+            width = document.getElementById("joy3Div").clientWidth -20
+        }
         height = width
         internalFillColor = (typeof parameters.internalFillColor === "undefined" ? "#125097" : parameters.internalFillColor),
         internalLineWidth = (typeof parameters.internalLineWidth === "undefined" ? 2 : parameters.internalLineWidth),
@@ -85,12 +89,12 @@ var JoyStick = (function(container, parameters, callback, classname)
     callback = callback || function(StickStatus) {};
 
     // Create Canvas element and add it in the Container object
-    var objContainer = document.getElementById(container);
+    objContainer = document.getElementById(container);
     
     // Fixing Unable to preventDefault inside passive event listener due to target being treated as passive in Chrome [Thanks to https://github.com/artisticfox8 for this suggestion]
     objContainer.style.touchAction = "none";
 
-    var canvas = document.createElement("canvas");
+    canvas = document.createElement("canvas");
     canvas.id = title;
     canvas.className = classname //ZONE CENTER
     if(width === 0) { width = objContainer.clientWidth; }
@@ -98,7 +102,7 @@ var JoyStick = (function(container, parameters, callback, classname)
     canvas.width = width;
     canvas.height = height;
     objContainer.appendChild(canvas);
-    var context=canvas.getContext("2d");
+    context=canvas.getContext("2d");
 
     pressed = 0; // Bool - 1=Yes - 0=No
     var circumference = 2 * Math.PI;
@@ -251,7 +255,7 @@ var JoyStick = (function(container, parameters, callback, classname)
             movedX = event.pageX;
             movedY = event.pageY;
             // Manage offset
-            if(canvas.offsetParent.tagName.toUpperCase() === "BODY")
+            if(canvas.offsetParent.tagName.toUpperCase() == "BODY")
             {
                 movedX -= canvas.offsetLeft;
                 movedY -= canvas.offsetTop;
@@ -421,6 +425,11 @@ export function createJoystick(classname) {
         updateJoystickColor()
     });
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    setInterval(function(){X = Joy.GetX()});
+    setInterval(function(){Y = Joy.GetY()});
+});
 
 // Function to update gamepad state and log changes
 function updateGamepadState() {

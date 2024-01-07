@@ -1,8 +1,9 @@
+"use strict";
 import { FlBr, FrBl } from './input.js';
 
 var closed = true;
 
-function Joystick() {
+function server() {
   const retry = setInterval(() => {
     if(closed) {
       const ws = new WebSocket('ws://raspberrypi.local:2604');
@@ -10,10 +11,10 @@ function Joystick() {
       ws.addEventListener('open', (event) => {
         //console.log('Connected to WebSocket server');
         closed = false;
-        document.getElementById("ConnectionState").innerHTML = "Successfully connected"
+        // document.getElementById("ConnectionState").innerHTML = "Successfully connected"
       
         // Sending JSON data at regular intervals
-        const intervalId = setInterval(() => {
+        const wheelInterval = setInterval(() => {
           if (ws.readyState === WebSocket.OPEN) {
             const jsonData = {
               "FlBr": FlBr,
@@ -24,10 +25,10 @@ function Joystick() {
           } else {
             //console.log('WebSocket is not in OPEN state. Closing interval.');
             closed = true;
-            Joystick();
-            clearInterval(intervalId);
+            server();
+            clearInterval(wheelInterval);
           }
-        }, 50); // Adjust the interval as needed
+        }, 100); // Adjust the interval as needed
       });
       
       ws.addEventListener('message', (event) => {
@@ -36,13 +37,13 @@ function Joystick() {
       
       ws.addEventListener('close', (event) => {
         //console.log('Connection closed');
-        document.getElementById("ConnectionState").innerHTML = "Failed to connect"
+        // document.getElementById("ConnectionState").innerHTML = "Failed to connect"
         closed = true;
       });
       
       ws.addEventListener('error', (event) => {
         //console.error('WebSocket encountered an error:', event);
-        document.getElementById("ConnectionState").innerHTML = "WebSocket error occurred"
+        // document.getElementById("ConnectionState").innerHTML = "WebSocket error occurred"
         closed = true;
       });
   
@@ -51,4 +52,4 @@ function Joystick() {
     }
   }, 2000);
 }
-Joystick();
+server();
