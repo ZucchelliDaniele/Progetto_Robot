@@ -5,6 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link href="../dist/output.css" rel="stylesheet">
 		<script src="./main.js"></script>
+		<script src="./time.js" type="module" ></script>
 		<script src="./chat.js"></script>
 		<title>RoboPi</title>
 		<style>
@@ -14,13 +15,13 @@
 			}
 		</style>
 	</head>
-	<body class="bg-white-gray dark:bg-black-gray transition ease-in dark:ease-out duration-1000">
+	<body class="bg-white-gray dark:bg-black-gray transition ease-in dark:ease-out duration-1000" id="body">
 		<!-- header -->
 		<h1 class="text-3xl font-bold bg-gray dark:bg-black transition ease-in dark:ease-out duration-700">
 			<header>			
 				<nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
 				  <div class="flex lg:flex-1">
-					<a class="-m-1.5 p-1.5" onclick="change_img_color()">
+					<a class="-m-1.5 p-1.5" onclick="change_theme_color_local()">
 					  <span class="sr-only">Your Company</span>
 					  <img id="theme_mode" class="h-7 w-auto flex-none items-center justify-center rounded-lg bg-gray-50 hover:cursor-pointer ring-2 hover:ring-black dark:hover:ring-white dark:ring-black ring-gray" src="" alt="" onclick="change_theme_color()">
 					</a>
@@ -269,6 +270,23 @@
 		</div>
 	</body>
     <script>
+		function change_theme_color_local() {
+			if (localStorage.theme === 'dark') {
+				document.getElementById("SendImage").src = "images/send_white.png"
+				
+			} else{
+				document.getElementById("SendImage").src = "images/send_black.png"
+			}
+			change_img_color()
+		}
+		window.onload = function() {
+			if (localStorage.theme === 'dark') {
+				document.getElementById("SendImage").src = "images/send_white.png"
+				
+			} else{
+				document.getElementById("SendImage").src = "images/send_black.png"
+			}
+		}
         document.getElementById('ChatInput').addEventListener('keyup', function(event) {
             // Check if the Enter key (keyCode 13) is pressed
             if (event.key == "Enter") {

@@ -5,6 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link href="../dist/output.css" rel="stylesheet">
 		<script src="./main.js"></script>
+		<script src="./time.js" type="module" ></script>
 		<script src="./input.js" type="module" ></script>
 		<script src="./server.js" type="module" ></script>
 		<script src="./chart.js"></script>
@@ -284,13 +285,44 @@
 		"use strict"
 		import { X, Y } from './input.js';
 		import { FlBr, FrBl } from './input.js';
+		import { hours, minutes, seconds} from './time.js';
 		var days = ["18/12/2023", "19/12/2023", "20/12/2023", "21/12/2023", "22/12/2023", "23/12/2023", "24/12/2023"]
 		var x = []
 		var y = []
 		var FlBr_ = []
 		var FrBl_ = []
 		var time = 1;
-		var labels = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]
+		var labels = []
+		{
+			const now = new Date();
+			const hours_start = now.getHours().toString().padStart(2, '0');
+			const minutes_start = now.getMinutes().toString().padStart(2, '0');
+			const seconds_start = now.getSeconds().toString().padStart(2, '0');
+
+			for (let i = 0; i < 20; i++) {
+				const nextSecond = (parseInt(seconds_start) + i) % 60;
+				const nextMinute =
+					parseInt(minutes_start) + Math.floor((parseInt(seconds_start) + i) / 60);
+				const nextHour =
+					(parseInt(hours_start) + Math.floor(nextMinute / 60)) % 24;
+				
+				if(nextMinute >= 60) {
+					nextMinute = nextMinute % 60;
+				}
+				if(nextHour >= 24) {
+					nextHour = nextHour % 24;
+				}
+				if(nextSecond >= 60) {
+					nextSecond = nextSecond % 60;
+				}
+
+				labels.push(
+					nextHour.toString().padStart(2, '0') + ":" +
+					nextMinute.toString().padStart(2, '0') + ":" +
+					nextSecond.toString().padStart(2, '0')
+				);
+			}
+		}
 		window.Charts = function(update = false) {
 			var isMobileView = window.matchMedia('(max-width: 1023px)').matches;
 			if(isMobileView) {
@@ -541,6 +573,12 @@
 		}
 		Charts();
 		window.change_theme_color_local = function() {
+				if (localStorage.theme === 'dark') {
+					document.getElementById("webcam").src = "./images/no_video_black.png"
+				
+				} else{
+					document.getElementById("webcam").src = "./images/no_video_white.png"
+				}
 				var milliseconds = 0;
 				const animationUpdate = setInterval(() => {
 					HoursChart.update();
@@ -560,8 +598,8 @@
 					y.splice(0, 1);
 				}
 				time += 1;
-				if(time > 19) {
-					labels.push(time);
+				if(time > 20) {
+					labels.push(hours+ ":" + minutes + ":" + seconds);
 				}
 				if(labels.length > 20) {
 					labels.splice(0, 1);
@@ -591,6 +629,12 @@
 		var loaded = false;
 		window.onload = function() {
 			loaded = true
+			if (localStorage.theme === 'dark') {
+				document.getElementById("webcam").src = "./images/no_video_black.png"
+				
+			} else{
+				document.getElementById("webcam").src = "./images/no_video_white.png"
+			}
 		}
 		window.addEventListener('resize', function(){ 
 			if(loaded) {
