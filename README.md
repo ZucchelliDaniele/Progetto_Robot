@@ -45,7 +45,7 @@ Semplifica i tuoi lavori tramite RoboPi, un robot automatizzato con interfaccia 
 * Sistema preciso con previsioni in tempo reale
 # User stories
 ## Utente Generico 
-* Come utente generico voglio connettermi al robot tramite un codice associato sullo schermo
+* Come utente generico voglio poter connettermi al robot tramite un codice associato sullo schermo
 ## Utente Salvato/Connesso
 * Come utente salvato/connesso voglio poter visualizzare l'interfaccia web del robot e poterlo utilizzare correttamente
 * Come utente salvato/connesso voglio poter connettermi e sconnettermi ad altri robot presenti nella rete
