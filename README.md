@@ -6,13 +6,10 @@ Trasportare oggetti di varie dimensioni e peso da un punto preciso ad un altro, 
 # Funzionalità
 * ## Requisiti di autenticazione
 ### Requisiti Funzionali:
-* ### Registrazione
-Gli utenti devono fornire i dati necessari per la registrazione di un nuovo account (email, password, nome)
-* ### Login
-Gli utenti registrati devono poter effettuare l'accesso per utilizzare/aggiungere un robot
-### Requisiti Non Funzionali:
-* ### Recupero Account:
-Gli utenti hanno la possibilità di recuperare le credenziali (password) tramite l'indirizzo email
+* ## Associazione
+  ### Requisiti Funzionali:
+* ###  Associazione tramite codice
+Gli utenti hanno la possibilità di connettersi a un robot nella propria rete locale tramite un codice temporaneo
 * ## Requisiti d'uso
   ### Requisiti Funzionali:
 * ### Controllo da locale
