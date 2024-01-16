@@ -5,7 +5,6 @@ L'uomo è impreciso/sbaglia/perde quando vengono trasportati tanti oggetti di pi
 Trasportare oggetti di varie dimensioni e peso da un punto preciso ad un altro, seguire/disegnare/mantenere oggetti seguendo una linea con precisione, fare movimenti precisi e rapidi
 # Funzionalità
 * ## Requisiti di autenticazione
-### Requisiti Funzionali:
 * ## Associazione
   ### Requisiti Funzionali:
 * ###  Associazione tramite codice
