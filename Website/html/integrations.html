@@ -222,84 +222,80 @@
 		  </h1>
 		<!-- body -->
 		<div class="py-2 px-3 grid gap-2 grid-cols-2" id="Body">
-			<div>
-				<div>
-					<!-- 1 -->
-				</div>
-			</div>
-			<div>
-				<div class="overflow-hidden bg-gray dark:bg-black rounded-3xl ring-2 ring-black dark:ring-white flex-col items-center justify-center m-6">
-                    <!-- TITLE -->
-                    <div class="dark:text-white text-center text-2xl font-bold my-3">
-                        <span>Chat GPT-4 Turbo</span>
-                    </div>
-                    <!-- TEXT -->
-                    <div class="overflow-auto h-[70vh]" id="Chat">					
-                    </div>
-                    <!-- INPUT -->
-                    <div class="flex items-center justify-center my-3 w-72 mx-auto relative">
-                        <input 
-                            type="text"
-                            placeholder="Type here..." 
-                            class="bg-white-gray dark:bg-black-gray ring-2 dark:ring-white dark:text-white text-black ring-black rounded-xl placeholder-black dark:placeholder-white p-2 w-72 focus:outline-0 focus:ring pr-10"
-                            id="ChatInput"
-                        >
-                        <img 
-							id="SendImage"
-                            src="" 
-                            alt="Image" 
-                            class="cursor-pointer absolute right-2 top-2 h-6 w-6 dark:hover:ring-white ring-2 rounded-lg hover:ring-black ring-white-gray dark:ring-black-gray"
-                            onclick = "send_input()"
-							onmousedown="this.className = 'cursor-pointer absolute right-2 top-2 h-6 w-6 dark:hover:ring-white ring rounded-lg hover:ring-black ring-white-gray dark:ring-black-gray'"
-							onmouseup="this.className = 'cursor-pointer absolute right-2 top-2 h-6 w-6 dark:hover:ring-white ring-2 rounded-lg hover:ring-black ring-white-gray dark:ring-black-gray'"
-							>
-                    </div>                                     
-                </div>
-                                                                           
-			</div>
-			<div>
-				<div>
-					<!-- 3 -->
-				</div>
-			</div>
-			<div>
-				<div>
-					<!-- 4 -->
-				</div>
-			</div>
 		</div>
 	</body>
     <script>
-		function change_theme_color_local() {
-			if (localStorage.theme === 'dark') {
-				document.getElementById("SendImage").src = "images/send_white.png"
-				
-			} else{
-				document.getElementById("SendImage").src = "images/send_black.png"
-			}
-			change_img_color()
-		}
-		window.onload = function() {
-			if (localStorage.theme === 'dark') {
-				document.getElementById("SendImage").src = "images/send_white.png"
-				
-			} else{
-				document.getElementById("SendImage").src = "images/send_black.png"
-			}
-		}
-        document.getElementById('ChatInput').addEventListener('keyup', function(event) {
-            // Check if the Enter key (keyCode 13) is pressed
-            if (event.key == "Enter") {
-                // Clear the input value
-                send_input();
-            }
-        });
         var isMobileView = window.matchMedia('(max-width: 1023px)').matches;
-		if(isMobileView) {
-			document.getElementById("Body").className = "py-2 px-3"
-		}
-		else {
-			document.getElementById("Body").className = "py-2 px-3 grid gap-2 grid-cols-2"
-		}
+        var devices = []
+        class device {
+            constructor(name, description, ip) {
+                this.name = name
+                this.description = description
+                this.ip = ip
+            }
+        }
+        devices.push(new device("RoboPi", "Mecanum Wheel Robot","http://127.0.0.1:5500/html/index.html"))
+        devices.push(new device("PenePi", "Mecanum Wheel Penis","http://127.0.0.1:5500/html/index.html"))
+        devices.push(new device("RoboPi", "Mecanum Wheel Robot","http://127.0.0.1:5500/html/index.html"))
+        devices.push(new device("PenePi", "Mecanum Wheel Penis","http://127.0.0.1:5500/html/index.html"))
+        devices.push(new device("RoboPi", "Mecanum Wheel Robot","http://127.0.0.1:5500/html/index.html"))
+        devices.push(new device("PenePi", "Mecanum Wheel Penis","http://127.0.0.1:5500/html/index.html"))
+        function createCards() {
+            var index = 0
+            var rows_number
+            if(isMobileView) {
+                rows_number = 15
+            }
+            else {
+                rows_number = 6
+            }
+            document.getElementById("Body").innerHTML = ""
+                for(var rows = 0; rows < rows_number; rows++) {
+                    var row = document.createElement("div")
+                    var columns_number
+                    if(isMobileView) {
+                    row.className = "grid grid-cols-2"
+                    columns_number = 2
+                    }
+                    else {
+                    row.className = "grid grid-cols-5"
+                    columns_number = 5
+                    }
+                    for(var cols = 0; cols < columns_number; cols++) {
+                    if(index >= devices.length) {
+                        break
+                    }
+                    document.getElementById("Body").className = "grid grid-rows-"+rows+1
+                        var card = document.createElement("div")
+                        var img = document.createElement("img")
+                        var title = document.createElement("h1")
+                        var description = document.createElement("p")
+                        img.src = "./images/Mecanum-Wheels-Robot-Car.png"
+                        img.style.objectFit = "cover";
+                        img.className = "h-full w-full dark:ring-white ring-2 ring-gray dark:ring-white"
+                        img.loading = "eager";
+                        card.appendChild(img)
+                        title.innerHTML = devices[index].name
+                        if(index % 2 == 0) {
+                            title.className = "text-2xl font-bold text-red m-2"
+                        }
+                        else title.className = "text-2xl font-bold text-white-blue m-2"
+                        card.appendChild(title)
+                        card.id = index
+                        description.innerHTML = devices[index].description
+                        description.className = "text-lg dark:text-white m-2"
+                        card.appendChild(description)
+                        card.className = "overflow-hidden m-6 rounded-lg text-center h-fit hover:cursor-pointer dark:ring-white ring-gray dark: hover:ring-4 ring bg-white-gray dark:bg-black-gray"
+                        card.onclick = function() {
+                        devices[this.id].ip
+                        window.location.href = devices[this.id].ip
+                        }
+                        row.appendChild(card)
+                        index++
+                    }
+                    document.getElementById("Body").appendChild(row)
+                }
+        }
+        createCards()
     </script>
 </html>

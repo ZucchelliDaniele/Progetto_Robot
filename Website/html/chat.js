@@ -42,6 +42,7 @@ function receive_input(){
     const span = document.createElement('span');
     const img = document.createElement('img');
     const h1 = document.createElement('h1');
+    const loading = document.createElement('img');
     div_index.className = "dark:text-white mx-20 my-3 flex items-center";
     img.className = "h-8 inline-flex"
     if (document.documentElement.classList.contains('dark')) {
@@ -57,7 +58,13 @@ function receive_input(){
     chat.appendChild(div_index);
     div_text.className = "dark:text-white mx-24 my-3 flex items-center";
     span.className = "block text-base text-gray-500 mx-7";
-    span.innerHTML = Math.random();
+    sleep(3000).then(() => {
+        span.innerHTML = Math.random();
+        div_text.appendChild(span);
+    });
+    loading.src = "./images/loading.gif"
+    loading.className = "h-8 block"
+    span.appendChild(loading);
     div_text.appendChild(span);
     chat.appendChild(div_text);
     ai_id_number++;
@@ -86,4 +93,8 @@ function change_img_color() {
 function scrollToBottom() {
     const chatContainer = document.getElementById("Chat");
     chatContainer.scrollTop = chatContainer.scrollHeight;
+}
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }

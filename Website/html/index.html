@@ -113,7 +113,7 @@
 							  </svg>
 							</div>
 							<div class="flex-auto">
-							  <a href="#" class="block font-semibold dark:text-white">
+							  <a href="./integrations.html" class="block font-semibold dark:text-white">
 								Integrations
 								<span class="absolute inset-0"></span>
 							  </a>
@@ -202,7 +202,7 @@
 							  <a href="./index.html" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 dark:text-white hover:bg-gray-50">Analytics</a>
 							  <a href="./input.html" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 dark:text-white hover:bg-gray-50">Movement</a>
 							  <a href="#" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 dark:text-white hover:bg-gray-50">Security</a>
-							  <a href="#" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 dark:text-white hover:bg-gray-50">Integrations</a>
+							  <a href="./integrations.html" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 dark:text-white hover:bg-gray-50">Integrations</a>
 							  <a href="./automations.html" class="block inline-flex rounded-lg py-2 pl-6 text-sm font-semibold leading-7 dark:text-white hover:bg-gray-50">Automations +</a>
 							  <a href="./automations.html" class="block inline-flex rounded-lg py-2 pr-3 text-sm mt-1 leading-7 dark:text-white hover:bg-gray-50">GPT-4 Turbo</a>
 							  <a href="#" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 dark:text-white hover:bg-gray-50">Watch demo</a>
@@ -295,15 +295,14 @@
 		var labels = []
 		{
 			const now = new Date();
-			const hours_start = now.getHours().toString().padStart(2, '0');
-			const minutes_start = now.getMinutes().toString().padStart(2, '0');
-			const seconds_start = now.getSeconds().toString().padStart(2, '0');
-
+			var hours_start = now.getHours().toString().padStart(2, '0');
+			var minutes_start = now.getMinutes().toString().padStart(2, '0');
+			var seconds_start = now.getSeconds().toString().padStart(2, '0');
 			for (let i = 0; i < 20; i++) {
-				const nextSecond = (parseInt(seconds_start) + i) % 60;
-				const nextMinute =
+				var nextSecond = (parseInt(seconds_start) + i) % 60;
+				var nextMinute =
 					parseInt(minutes_start) + Math.floor((parseInt(seconds_start) + i) / 60);
-				const nextHour =
+				var nextHour =
 					(parseInt(hours_start) + Math.floor(nextMinute / 60)) % 24;
 				
 				if(nextMinute >= 60) {
