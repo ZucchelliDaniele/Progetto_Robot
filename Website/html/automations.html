@@ -222,10 +222,34 @@
 		  </h1>
 		<!-- body -->
 		<div class="py-2 px-3 grid gap-2 grid-cols-2" id="Body">
-			<div>
+			<div class="grid grid-rows-2">
 				<div>
-					<!-- 1 -->
+					<div class="items-center min-w-fit ring-2 rounded-xl m-6 flex ring-gray dark:ring-white-gray rounded-3xl">
+						<img id="webcam" class="p-10 mx-auto align-center align-middle" src="./images/no_video_white.png">
+					</div>
 				</div>
+				<div class="overflow-auto flex flex-col min-w-fit min-h-fit mt-0 m-6 rounded-3xl ring-2 ring-gray dark:ring-white">
+					<div class="h-fit text-center dark:text-white mx-auto m-5 text-3xl font-bold">Line Follower</div>
+					<div class="h-fit text-center dark:text-white mx-auto m-5 py-6 px-14 text-3xl font-bold ring-2 bg-green rounded-xl ring-green hover:cursor-pointer"
+					onmousedown="if(this.innerHTML =='Start') {
+						this.className='h-fit text-center dark:text-white mx-auto m-5 py-6 px-14 text-4xl font-bold ring bg-green rounded-xl ring-green hover:cursor-pointer'
+					}
+					else this.className='h-fit text-center dark:text-white mx-auto m-5 py-6 px-14 text-4xl font-bold ring bg-red  rounded-xl ring-red hover:cursor-pointer'"
+					onmouseup="if(this.innerHTML =='Start') {
+						this.className='h-fit text-center dark:text-white mx-auto m-5 py-6 px-14 text-3xl font-bold ring-2 bg-red rounded-xl ring-red hover:cursor-pointer'
+					}
+					else this.className='h-fit text-center dark:text-white mx-auto m-5 py-6 px-14 text-3xl font-bold ring-2 bg-green rounded-xl ring-green hover:cursor-pointer'"
+					onclick="if(this.innerHTML =='Start') {
+						this.innerHTML='Stop'
+						line_follower('start')
+					}
+					else {
+						this.innerHTML='Start'
+						line_follower('stop')
+					}
+						"
+					>Start</div>
+				</div>				
 			</div>
 			<div>
 				<div class="overflow-hidden bg-gray dark:bg-black rounded-3xl ring-2 ring-black dark:ring-white flex-col items-center justify-center m-6 transition ease-in dark:ease-out duration-500">
@@ -257,34 +281,28 @@
                 </div>
                                                                            
 			</div>
-			<div>
-				<div>
-					<!-- 3 -->
-				</div>
-			</div>
-			<div>
-				<div>
-					<!-- 4 -->
-				</div>
-			</div>
 		</div>
 	</body>
     <script>
 		function change_theme_color_local() {
 			if (localStorage.theme === 'dark') {
 				document.getElementById("SendImage").src = "images/send_white.png"
+				document.getElementById("webcam").src = "./images/no_video_black.png"
 				
 			} else{
 				document.getElementById("SendImage").src = "images/send_black.png"
+				document.getElementById("webcam").src = "./images/no_video_white.png"
 			}
 			change_img_color()
 		}
 		window.onload = function() {
 			if (localStorage.theme === 'dark') {
 				document.getElementById("SendImage").src = "images/send_white.png"
+				document.getElementById("webcam").src = "./images/no_video_black.png"
 				
 			} else{
 				document.getElementById("SendImage").src = "images/send_black.png"
+				document.getElementById("webcam").src = "./images/no_video_white.png"
 			}
 		}
         document.getElementById('ChatInput').addEventListener('keyup', function(event) {

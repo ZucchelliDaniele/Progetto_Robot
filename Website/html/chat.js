@@ -98,3 +98,8 @@ function scrollToBottom() {
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
+
+function line_follower(state) {
+    if(state =="start") console.log("Line follower started")
+    else if(state == "stop") console.log("Line follower stopped")
+}
