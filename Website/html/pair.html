@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="../dist/output.css" rel="stylesheet">
+		<script src="./main.js"></script>
+		<title>RoboPi</title>
+		<style>
+			/* Hide the scrollbar */
+			::-webkit-scrollbar {
+			display: none; /* Hide the scrollbar in webkit (Chrome, Safari, Edge) */
+			}
+		</style>
+	</head>
+  <body class="bg-white-gray dark:bg-black-gray transition items-center ease-in dark:ease-out duration-1000">
+    <div class="absolute left-1/2 transform -translate-x-1/2 mt-20">
+      <span class="text-6xl text-black dark:text-white">Insert this code to pair:</span>
+    </div>        
+    <div class="mx-auto h-screen flex items-center justify-center">
+        <div class="flex items-center justify-center my-3 w-4/12 mx-auto relative">
+            <input 
+                type="text"
+                placeholder="Type here..." 
+                class="bg-white-gray dark:bg-black-gray ring-2 dark:ring-white dark:text-white text-black ring-black w-full rounded-xl placeholder-black dark:placeholder-white p-2 focus:outline-0 focus:ring pr-10"
+                id="PairInput"
+            >
+            <img 
+                id="SendImage"
+                src="" 
+                alt="Image" 
+                class="cursor-pointer absolute right-2 top-2 h-6 w-6 dark:hover:ring-white ring-2 rounded-lg hover:ring-black ring-white-gray dark:ring-black-gray"
+                onclick = "send_input()"
+                onmousedown="this.className = 'cursor-pointer absolute right-2 top-2 h-6 w-6 dark:hover:ring-white ring rounded-lg hover:ring-black ring-white-gray dark:ring-black-gray'"
+                onmouseup="this.className = 'cursor-pointer absolute right-2 top-2 h-6 w-6 dark:hover:ring-white ring-2 rounded-lg hover:ring-black ring-white-gray dark:ring-black-gray'"
+                >
+        </div>
+    </div>
+  </body>
+  <script>
+    "use strict"
+        // Function to calculate SHA-256 hash using window.crypto.subtle
+    async function sha256(input) {
+    // Encode the input string as UTF-8
+    const encoder = new TextEncoder();
+    const data = encoder.encode(input);
+
+    // Use the subtle crypto API to calculate the SHA-256 hash
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+
+    // Convert the hash buffer to a hexadecimal string
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
+
+    return hashHex;
+    }
+
+    window.onload = function() {
+			if (localStorage.theme === 'dark') {
+				document.getElementById("SendImage").src = "images/send_white.png"
+			} else{
+				document.getElementById("SendImage").src = "images/send_black.png"
+			}
+		}
+    function send_input() {
+        if(document.getElementById('PairInput').value != "") {
+            var code = document.getElementById('PairInput').value;
+            sha256(code).then(Hashcode => {
+                console.log('Code: ',code,' SHA-256 Hash:', Hashcode);
+            });
+            document.getElementById('PairInput').value = "";
+        }
+    }
+    document.getElementById('PairInput').addEventListener('keyup', function(event) {
+        // Check if the Enter key (keyCode 13) is pressed
+        if (event.key == "Enter") {
+            // Clear the input value
+            send_input();
+        }
+    });
+  </script>
+</html>

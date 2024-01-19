@@ -284,13 +284,15 @@
 	<script type="module">
 		"use strict"
 		import { X, Y } from './input.js';
-		import { FlBr, FrBl } from './input.js';
+		import { Fl, Fr, Bl, Br } from './input.js';
 		import { hours, minutes, seconds} from './time.js';
 		var days = ["18/12/2023", "19/12/2023", "20/12/2023", "21/12/2023", "22/12/2023", "23/12/2023", "24/12/2023"]
 		var x = []
 		var y = []
-		var FlBr_ = []
-		var FrBl_ = []
+		var Fl_ = []
+		var Fr_ = []
+		var Bl_ = []
+		var Br_ = []
 		var time = 1;
 		var labels = []
 		{
@@ -416,15 +418,29 @@
 				labels: labels,
 				datasets: 
 				[{
-					label: 'FlBr',
-					data: FlBr_,
+					label: 'Fl',
+					data: Fl_,
 					borderWidth: 2,
 					// borderColor: '#36A2EB',
 					// backgroundColor: '#9BD0F5',
 					},
 					{
-					label: 'FrBl',
-					data: FrBl_,
+					label: 'Fr',
+					data: Fr_,
+					borderWidth: 2,
+					// borderColor: '#1da711',
+					// backgroundColor: '#46eb37',
+					},
+					{
+					label: 'Bl',
+					data: Bl_,
+					borderWidth: 2,
+					// borderColor: '#1da711',
+					// backgroundColor: '#46eb37',
+					},
+					{
+					label: 'Br',
+					data: Br_,
 					borderWidth: 2,
 					// borderColor: '#1da711',
 					// backgroundColor: '#46eb37',
@@ -606,13 +622,21 @@
 			}, 1000);
 			//Update the chart of FlBr and FrBl Values
 			setInterval(() => {
-				FlBr_.push(FlBr);
-				if (FlBr_.length > 19) {
-					FlBr_.splice(0, 1);
+				Fl_.push(Fl);
+				if (Fl_.length > 19) {
+					Fl_.splice(0, 1);
 				}
-				FrBl_.push(FrBl);
-				if (FrBl_.length > 19) {
-					FrBl_.splice(0, 1);
+				Fr_.push(Fr);
+				if (Fr_.length > 19) {
+					Fr_.splice(0, 1);
+				}
+				Bl_.push(Bl);
+				if (Bl_.length > 19) {
+					Bl_.splice(0, 1);
+				}
+				Br_.push(Br);
+				if (Br_.length > 19) {
+					Br_.splice(0, 1);
 				}
 			}, 1000);
 

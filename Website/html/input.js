@@ -25,8 +25,12 @@ var JoystickSwapStatus = true //true leftJoystick false Right Joystick
 var degrees
 var radiants
 var magnitude
-export var FrBl
-export var FlBr
+var rotationLeft = 0
+var rotationRight = 0
+export var Fr 
+export var Bl
+export var Fl 
+export var Br
 var differenceIntExtCircle = 2/3
 var Joy
 var TriggerSwapStatus = true //true left Trigger false Right Trigger
@@ -403,6 +407,7 @@ export function createJoystick(classname) {
         }
         else if(!TriggerSwapStatus && JoystickOrTrigger==false) {
             magnitude= rightTriggerValue -leftTriggerValue
+            console.log(magnitude)
             if(Joy.GetY()==0 && Joy.GetX() == 0 && magnitude > 0) radiants = 1/2 * Math.PI // this establish that if i don't move the joystick and i use the triggers to change magnitude the radiants sets to 1/2π
             if(Joy.GetY()==0 && Joy.GetX() == 0 && magnitude < 0) {
                 radiants = 3/2 * Math.PI // this establish that if i don't move the joystick and i use the triggers to change magnitude the radiants sets to 1/2π
@@ -413,14 +418,44 @@ export function createJoystick(classname) {
             magnitude = Math.sqrt( Joy.GetX() ** 2.0 + Joy.GetY() ** 2.0 ) / 100
         }
         if(magnitude>1) magnitude = 1
-        FrBl = Math.round((Math.sin((radiants - (1/4) * Math.PI).toFixed(5))) * 100000 * magnitude) / 100000
-        FlBr = Math.round((Math.sin((radiants + (1/4) * Math.PI).toFixed(5))) * 100000 * magnitude) / 100000
+        if(rotationLeft == 1) {
+            if(TriggerSwapStatus && JoystickOrTrigger==false) {
+                magnitude= leftTriggerValue - rightTriggerValue
+            }
+            else if(!TriggerSwapStatus && JoystickOrTrigger==false) {
+                magnitude= rightTriggerValue -leftTriggerValue
+            }
+            else magnitude = 1
+            Fl = -1 * magnitude
+            Bl = -1 * magnitude
+            Fr = 1 * magnitude
+            Br = 1 * magnitude
+        }
+        else if(rotationRight == 1) {
+            if(TriggerSwapStatus && JoystickOrTrigger==false) {
+                magnitude= leftTriggerValue - rightTriggerValue
+            }
+            else if(!TriggerSwapStatus && JoystickOrTrigger==false) {
+                magnitude= rightTriggerValue -leftTriggerValue
+            }
+            else magnitude = 1
+            Fl = 1 * magnitude
+            Bl = 1 * magnitude
+            Fr = -1 * magnitude
+            Br = -1 * magnitude
+        }
+        else {
+            Fr = Math.round((Math.sin((radiants - (1/4) * Math.PI).toFixed(5))) * 100000 * magnitude) / 100000
+            Bl = Math.round((Math.sin((radiants - (1/4) * Math.PI).toFixed(5))) * 100000 * magnitude) / 100000
+            Fl = Math.round((Math.sin((radiants + (1/4) * Math.PI).toFixed(5))) * 100000 * magnitude) / 100000
+            Br = Math.round((Math.sin((radiants + (1/4) * Math.PI).toFixed(5))) * 100000 * magnitude) / 100000
+        }
         if (window.location.pathname.includes("input.html")) {
             document.getElementById("degrees").innerHTML= degrees
             document.getElementById("radiant").innerHTML= radiants
             document.getElementById("magnitude").innerHTML= magnitude
-            document.getElementById("FR-BL").innerHTML = FrBl
-            document.getElementById("FL-BR").innerHTML = FlBr
+            document.getElementById("FR-BL").innerHTML = Fr
+            document.getElementById("FL-BR").innerHTML = Fl
         }
         updateJoystickColor()
     });
@@ -460,16 +495,29 @@ function updateGamepadState() {
         if(i==4 && buttonValue==1|| i==5 && buttonValue==1) {
             JoystickOrTrigger=false
         }
-        if(i==10 && buttonValue==1|| i==11 && buttonValue==1) {
-            JoystickOrTrigger=true
-        }
-        if(i==17 && buttonValue==1 && change_theme_color_button_value == 0) {
+        if(i==9 && buttonValue==1 && change_theme_color_button_value == 0) {
             change_theme_color()
             change_theme_color_button_value = 1
         }
-        if(i==17 && buttonValue==0 && change_theme_color_button_value == 1) {
+        if(i==9 && buttonValue==0 && change_theme_color_button_value == 1) {
             change_theme_color_button_value = 0
         }
+        if(i==10 && buttonValue==1|| i==11 && buttonValue==1) {
+            JoystickOrTrigger=true
+        }
+        if(i==14 && buttonValue==1) { 
+            rotationLeft = 1
+        }
+        if(i==14 && buttonValue==0) {
+            rotationLeft = 0
+        }
+        if(i==15 && buttonValue==1) {
+            rotationRight = 1
+        }
+        if(i==15 && buttonValue==0) {
+            rotationRight = 0
+        }
+        // if(buttonValue==1) console.log(i)
         leftTriggerValue = gamepad.buttons[6].value
         rightTriggerValue = gamepad.buttons[7].value
     }

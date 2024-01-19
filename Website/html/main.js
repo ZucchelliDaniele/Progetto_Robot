@@ -4,7 +4,7 @@ var HeaderDropDownMenu = true //true opened false closed
 var wifi_signal = 2
 
 document.addEventListener("DOMContentLoaded", function () {
-    if (!window.location.pathname.includes("login.html")) {
+    if (!window.location.pathname.includes("login.html") && !window.location.pathname.includes("pair.html") && !window.location.pathname.includes("code.html")) {
         load_logo()
         load_wifi()
     }

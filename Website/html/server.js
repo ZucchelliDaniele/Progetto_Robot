@@ -1,5 +1,5 @@
 "use strict";
-import { FlBr, FrBl } from './input.js';
+import { Fl, Fr, Bl, Br } from './input.js';
 
 var closed = true;
 
@@ -17,8 +17,10 @@ function server() {
         const wheelInterval = setInterval(() => {
           if (ws.readyState === WebSocket.OPEN) {
             const jsonData = {
-              "FlBr": FlBr,
-              "FrBl": FrBl,
+              "Fl": Fl,
+              "Fr": Fr,
+              "Bl": Bl,
+              "Br": Br
             };
       
             ws.send(JSON.stringify(jsonData));

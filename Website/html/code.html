@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="../dist/output.css" rel="stylesheet">
+		<script src="./main.js"></script>
+		<title>RoboPi</title>
+		<style>
+			/* Hide the scrollbar */
+			::-webkit-scrollbar {
+			display: none; /* Hide the scrollbar in webkit (Chrome, Safari, Edge) */
+			}
+		</style>
+	</head>
+  <body class="bg-white-gray dark:bg-black-gray transition items-center ease-in dark:ease-out duration-1000">
+    <div class="absolute left-1/2 transform -translate-x-1/2 mt-20">
+      <span class="text-6xl text-black dark:text-white">Insert this code to pair:</span>
+    </div>        
+    <div class="mx-auto h-screen flex items-center justify-center">
+        <span class="text-9xl mb-16 text-black dark:text-white" id="code"></span>
+    </div>
+  </body>
+  <script>
+    "use strict"
+    function generateRandomString(length) {
+      const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      let result = '';
+
+      for (let i = 0; i < length; i++) {
+          const randomIndex = Math.floor(Math.random() * characters.length);
+          result += characters.charAt(randomIndex);
+      }
+
+      return result;
+    }
+    document.getElementById("code").innerHTML = generateRandomString(6);
+  </script>
+</html>
