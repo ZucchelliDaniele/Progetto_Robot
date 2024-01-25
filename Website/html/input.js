@@ -25,6 +25,8 @@ var JoystickSwapStatus = true //true leftJoystick false Right Joystick
 var degrees
 var radiants
 var magnitude
+var rotationUp = 0
+var rotationDown = 0
 var rotationLeft = 0
 var rotationRight = 0
 export var Fr 
@@ -418,7 +420,33 @@ export function createJoystick(classname) {
             magnitude = Math.sqrt( Joy.GetX() ** 2.0 + Joy.GetY() ** 2.0 ) / 100
         }
         if(magnitude>1) magnitude = 1
-        if(rotationLeft == 1) {
+        if(rotationUp == 1) { 
+            if(TriggerSwapStatus && JoystickOrTrigger==false) {
+                magnitude= leftTriggerValue - rightTriggerValue
+            }
+            else if(!TriggerSwapStatus && JoystickOrTrigger==false) {
+                magnitude= rightTriggerValue -leftTriggerValue
+            }
+            else magnitude = 1
+            Fl = 0
+            Bl = 1 * magnitude
+            Fr = 0
+            Br = -1 * magnitude
+        }
+        else if(rotationDown == 1) {
+            if(TriggerSwapStatus && JoystickOrTrigger==false) {
+                magnitude= leftTriggerValue - rightTriggerValue
+            }
+            else if(!TriggerSwapStatus && JoystickOrTrigger==false) {
+                magnitude= rightTriggerValue -leftTriggerValue
+            }
+            else magnitude = 1
+            Fl = 1 * magnitude
+            Bl = 0
+            Fr = -1 * magnitude
+            Br = 0
+        }
+        else if(rotationLeft == 1) {
             if(TriggerSwapStatus && JoystickOrTrigger==false) {
                 magnitude= leftTriggerValue - rightTriggerValue
             }
@@ -504,6 +532,18 @@ function updateGamepadState() {
         }
         if(i==10 && buttonValue==1|| i==11 && buttonValue==1) {
             JoystickOrTrigger=true
+        }
+        if(i==12 && buttonValue==1) { 
+            rotationUp = 1
+        }
+        if(i==12 && buttonValue==0) { 
+            rotationUp = 0
+        }
+        if(i==13 && buttonValue==1) { 
+            rotationDown = 1
+        }
+        if(i==13 && buttonValue==0) { 
+            rotationDown = 0
         }
         if(i==14 && buttonValue==1) { 
             rotationLeft = 1
