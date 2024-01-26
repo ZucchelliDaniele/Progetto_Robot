@@ -222,12 +222,9 @@
 		<div class="py-2 px-3 grid gap-2 grid-cols-2" id="Body">
 			<div class="grid grid-rows-2">
 				<div>
-					<div class="items-center min-w-fit ring-2 rounded-xl m-6 flex ring-gray dark:ring-white-gray rounded-3xl">
-						<img id="webcam" class="p-10 mx-auto align-center align-middle" src="./images/no_video_white.png">
-					</div>
-				</div>
-				<div class="overflow-auto flex flex-col min-w-fit min-h-fit mt-0 m-6 rounded-3xl ring-2 ring-gray dark:ring-white">
-					<div class="h-fit text-center dark:text-white mx-auto m-5 text-3xl font-bold">Line Follower</div>
+					<div class="items-center min-w-fit min-h-full ring-2 rounded-xl m-6 flex flex-col ring-gray dark:ring-white-gray rounded-3xl">
+						<img id="webcam" class="p-10 mx-auto align-center align-middle" src="http://raspberrypi.local:8000/stream.mjpg">
+						<div class="h-fit text-center dark:text-white mx-auto m-5 text-3xl font-bold">Line Follower</div>
 					<div class="h-fit text-center dark:text-white mx-auto m-5 py-6 px-14 text-3xl font-bold ring-2 bg-green rounded-xl ring-green hover:cursor-pointer"
 					onmousedown="if(this.innerHTML =='Start') {
 						this.className='h-fit text-center dark:text-white mx-auto m-5 py-6 px-14 text-4xl font-bold ring bg-green rounded-xl ring-green hover:cursor-pointer'
@@ -247,7 +244,8 @@
 					}
 						"
 					>Start</div>
-				</div>				
+					</div>
+				</div>		
 			</div>
 			<div>
 				<div class="overflow-hidden bg-gray dark:bg-black rounded-3xl ring-2 ring-black dark:ring-white flex-col items-center justify-center m-6 transition ease-in dark:ease-out duration-500">
@@ -286,22 +284,22 @@
 		function change_theme_color_local() {
 			if (localStorage.theme === 'dark') {
 				document.getElementById("SendImage").src = "images/send_white.png"
-				document.getElementById("webcam").src = "./images/no_video_black.png"
+				// document.getElementById("webcam").src = "./images/no_video_black.png"
 				
 			} else{
 				document.getElementById("SendImage").src = "images/send_black.png"
-				document.getElementById("webcam").src = "./images/no_video_white.png"
+				// document.getElementById("webcam").src = "./images/no_video_white.png"
 			}
 			change_img_color()
 		}
 		window.onload = function() {
 			if (localStorage.theme === 'dark') {
 				document.getElementById("SendImage").src = "images/send_white.png"
-				document.getElementById("webcam").src = "./images/no_video_black.png"
+				// document.getElementById("webcam").src = "./images/no_video_black.png"
 				
 			} else{
 				document.getElementById("SendImage").src = "images/send_black.png"
-				document.getElementById("webcam").src = "./images/no_video_white.png"
+				// document.getElementById("webcam").src = "./images/no_video_white.png"
 			}
 		}
         document.getElementById('ChatInput').addEventListener('keyup', function(event) {

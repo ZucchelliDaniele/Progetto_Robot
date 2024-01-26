@@ -232,8 +232,8 @@
 			<!-- 2 -->
 			<div>
 				<div id="webcamJoystickDiv" class="grid grid-cols-2 min-w-fit">
-					<div id="webcamDiv" class="items-center min-w-fit ring-2 ml-5 rounded-xl m-2 flex ring-gray dark:ring-white-gray rounded-3xl">
-						<img id="webcam" class="p-10 mx-auto align-center align-middle" src="./images/no_video_white.png">
+					<div id="webcamDiv" class="items-center min-w-fit min-h-fit ring-2 ml-5 rounded-xl m-2 flex ring-gray dark:ring-white-gray rounded-3xl">
+						<img id="webcam" class="p-10 mx-auto align-center align-middle" src="http://raspberrypi.local:8000/stream.mjpg">
 					</div>
 					<div id="joy3Div">
 							
@@ -264,12 +264,12 @@
 		if(isMobileView) {
 			document.getElementById("webcamJoystickDiv").classList = "grid grid-rows-2 min-h-full min-w-full"
 			class_name= "mx-auto items-center align-center hover:cursor-pointer ring-2 ring-gray dark:ring-white-gray rounded-3xl"
-			document.getElementById("webcamDiv").classList ="items-center min-w-fit ring-2 rounded-xl my-4 mx-2 align-middle ring-gray dark:ring-white-gray rounded-3xl"
+			document.getElementById("webcamDiv").classList ="items-center min-w-fit ring-2 rounded-xl my-4 mx-2 min-h-fit align-middle ring-gray dark:ring-white-gray rounded-3xl"
 		
 		}
 		else {
 			class_name = "float-right hover:cursor-pointer ring-2 ring-gray dark:ring-white-gray rounded-3xl my-4 mr-1"
-			document.getElementById("webcamDiv").classList ="items-center min-w-fit ring-2 rounded-xl ml-8 m-2 align-middle ring-gray dark:ring-white-gray rounded-3xl"
+			document.getElementById("webcamDiv").classList ="items-center min-w-fit ring-2 rounded-xl ml-8 m-2 min-h-fit align-middle ring-gray dark:ring-white-gray rounded-3xl"
 		}
 		document.addEventListener("DOMContentLoaded", function () {
     		createJoystick(class_name);
@@ -587,12 +587,12 @@
 		}
 		Charts();
 		window.change_theme_color_local = function() {
-				if (localStorage.theme === 'dark') {
-					document.getElementById("webcam").src = "./images/no_video_black.png"
+				// if (localStorage.theme === 'dark') {
+				// 	document.getElementById("webcam").src = "./images/no_video_black.png"
 				
-				} else{
-					document.getElementById("webcam").src = "./images/no_video_white.png"
-				}
+				// } else{
+				// 	document.getElementById("webcam").src = "./images/no_video_white.png"
+				// }
 				var milliseconds = 0;
 				const animationUpdate = setInterval(() => {
 					HoursChart.update();
@@ -651,12 +651,12 @@
 		var loaded = false;
 		window.onload = function() {
 			loaded = true
-			if (localStorage.theme === 'dark') {
-				document.getElementById("webcam").src = "./images/no_video_black.png"
+			// if (localStorage.theme === 'dark') {
+			// 	document.getElementById("webcam").src = "./images/no_video_black.png"
 				
-			} else{
-				document.getElementById("webcam").src = "./images/no_video_white.png"
-			}
+			// } else{
+			// 	document.getElementById("webcam").src = "./images/no_video_white.png"
+			// }
 		}
 		window.addEventListener('resize', function(){ 
 			if(loaded) {
