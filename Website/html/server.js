@@ -2,11 +2,18 @@
 import { Fl, Fr, Bl, Br } from './input.js';
 
 var closed = true;
+function getUrlWithNoPort() {
+  const url = window.location.href;
+
+  const parsedUrl = new URL(url);
+  const baseUrl = `${parsedUrl.hostname}`;
+  return baseUrl;
+}
 
 function server() {
   const retry = setInterval(() => {
     if(closed) {
-      const ws = new WebSocket('ws://raspberrypi.local:2604');
+      const ws = new WebSocket('ws://'+getUrlWithNoPort()+':2604');
   
       ws.addEventListener('open', (event) => {
         //console.log('Connected to WebSocket server');

@@ -6,7 +6,6 @@
 		<link href="../dist/output.css" rel="stylesheet">
 		<script src="./main.js"></script>
 		<script src="./time.js" type="module" ></script>
-		<script src="./chat.js"></script>
 		<title>MecaPiFlex</title>
 		<style>
 			/* Hide the scrollbar */
@@ -219,94 +218,91 @@
 			  </header>			  
 		  </h1>
 		<!-- body -->
-		<div class="py-2 px-3 grid gap-2 grid-cols-2" id="Body">
-		</div>
+		<div class="flex items-center justify-center">
+			<img id="webcam" class="mx-auto my-80 hover:cursor-pointer">
+		</div>	
 	</body>
     <script>
 		"use strict"
-        var isMobileView = window.matchMedia('(max-width: 1023px)').matches;
-        var devices = []
-        class device {
-            constructor(name, description, ip) {
-                this.name = name
-                this.description = description
-                this.ip = ip
-            }
-        }
-        devices.push(new device("RoboPi", "Mecanum Wheel Robot","http://127.0.0.1:5500/html/index.html"))
-        devices.push(new device("PenePi", "Mecanum Wheel Penis","http://127.0.0.1:5500/html/index.html"))
-        devices.push(new device("RoboPi", "Mecanum Wheel Robot","http://127.0.0.1:5500/html/index.html"))
-        devices.push(new device("PenePi", "Mecanum Wheel Penis","http://127.0.0.1:5500/html/index.html"))
-        devices.push(new device("RoboPi", "Mecanum Wheel Robot","http://127.0.0.1:5500/html/index.html"))
-        devices.push(new device("PenePi", "Mecanum Wheel Penis","http://127.0.0.1:5500/html/index.html"))
-		devices.push(new device("PenePi", "Mecanum Wheel Penis","http://127.0.0.1:5500/html/index.html"))
-		devices.push(new device("RoboPi", "Mecanum Wheel Robot","http://127.0.0.1:5500/html/index.html"))
-        devices.push(new device("PenePi", "Mecanum Wheel Penis","http://127.0.0.1:5500/html/index.html"))
-        devices.push(new device("RoboPi", "Mecanum Wheel Robot","http://127.0.0.1:5500/html/index.html"))
-        devices.push(new device("PenePi", "Mecanum Wheel Penis","http://127.0.0.1:5500/html/index.html"))
-		devices.push(new device("PenePi", "Mecanum Wheel Penis","http://127.0.0.1:5500/html/index.html"))
-        function createCards() {
-            var index = 0
-            var rows = 0
-            document.getElementById("Body").innerHTML = ""
-                while(index < devices.length) {
-                    var row = document.createElement("div")
-                    var columns_number
-                    if(isMobileView) {
-                    row.className = "grid grid-cols-2"
-                    columns_number = 2
-                    }
-                    else {
-                    row.className = "grid grid-cols-5"
-                    columns_number = 5
-                    }
-                    for(var cols = 0; cols < columns_number; cols++) {
-                    if(index < (devices.length)) {
-                        document.getElementById("Body").className = "grid grid-rows-"+rows+1
-                        var card = document.createElement("div")
-                        var img = document.createElement("img")
-                        var title = document.createElement("h1")
-                        var description = document.createElement("p")
-                        img.src = "./images/Mecanum-Wheels-Robot-Car.png"
-                        img.style.objectFit = "cover";
-                        img.className = "h-full w-full dark:ring-white ring-2 ring-gray dark:ring-white"
-                        img.loading = "eager";
-                        card.appendChild(img)
-                        title.innerHTML = devices[index].name
-                        if(index % 2 == 0) {
-                            title.className = "text-2xl font-bold text-red m-2"
-                        }
-                        else title.className = "text-2xl font-bold text-white-blue m-2"
-                        card.appendChild(title)
-                        card.id = index
-                        description.innerHTML = devices[index].description
-                        description.className = "text-lg dark:text-white m-2"
-                        card.appendChild(description)
-                        card.className = "overflow-hidden m-6 rounded-lg text-center h-fit hover:cursor-pointer dark:ring-white ring-gray dark: hover:ring-4 ring bg-white-gray dark:bg-black-gray transition ease-in dark:ease-out duration-500"
-                        card.onclick = function() {
-                        devices[this.id].ip
-                        window.location.href = devices[this.id].ip
-                        }
-                        row.appendChild(card)
-                        index++
-                    }
-                    }
-					if(index == (devices.length)){
-						document.getElementById("Body").className = "grid grid-rows-"+rows+1
-                        var card = document.createElement("div")
-						var img = document.createElement("img")
-						img.src = "./images/loading_circle.gif"
-                        img.style.objectFit = "cover";
-                        img.className = "h-32 dark:ring-white mx-auto align-middle"
-                        img.loading = "eager";
-						card.className = "overflow-hidden m-6 my-24 text-center h-fit items-center justify-center align-middle"
-                        card.appendChild(img)
-						row.appendChild(card)
-					}
-                    document.getElementById("Body").appendChild(row)
-					rows++
-                }
-        }
-        createCards()
+		if(!window.ImgAvaiable) {
+			if (localStorage.theme === 'dark') {
+				document.getElementById("webcam").src = "./images/no_video_black.png"
+				
+			} else{
+				document.getElementById("webcam").src = "./images/no_video_white.png"
+			}
+		}
+		window.onload = function() {
+			if(!window.ImgAvaiable) {
+				if (localStorage.theme === 'dark') {
+					document.getElementById("webcam").src = "./images/no_video_black.png"
+				
+				} else{
+					document.getElementById("webcam").src = "./images/no_video_white.png"
+				}
+			}
+		}
     </script>
+<script>
+    "use strict"
+    function ReloadVideo() {
+        var imageUrl = getUrlWithNoPort() + ":1809/stream.mjpg";
+        var img = new Image();
+        window.ImgAvaiable = false;
+
+        img.onload = function () {
+			document.getElementById("webcam").innerHTML = "";
+        	document.getElementById("webcam").src = "";
+            console.log("Stream is available.");
+            document.getElementById("webcam").src = imageUrl;
+            if (!window.location.href.includes("localhost") && !window.location.href.includes("127.0.0.1")) {
+                document.getElementById("webcam").width = screen.width
+                document.getElementById("webcam").height = screen.height
+            }
+            document.getElementById("webcam").className = "mx-auto"
+            window.ImgAvaiable = true;
+			clearInterval(video_interval);
+        };
+
+        img.onerror = function () {
+			document.getElementById("webcam").innerHTML = "";
+        	document.getElementById("webcam").src = "";
+            console.error("Error loading stream. It may be unavailable.");
+            document.getElementById("webcam").onclick = function () {
+                ReloadVideo();
+            };
+			if(!window.ImgAvaiable) {
+				if (localStorage.theme === 'dark') {
+					document.getElementById("webcam").src = "./images/no_video_black.png"
+				} else{
+					document.getElementById("webcam").src = "./images/no_video_white.png"
+				}
+			}
+            window.ImgAvaiable = false; // Reset the variable when an error occurs
+        }
+
+        img.src = imageUrl;
+    }
+    ReloadVideo();
+    var video_interval = setInterval(() => { ReloadVideo(); }, 10000);
+
+    function getUrlWithNoPort() {
+        const url = window.location.href;
+
+        const parsedUrl = new URL(url);
+        const baseUrl = `${parsedUrl.protocol}//${parsedUrl.hostname}`;
+        return baseUrl;
+    }
+	function change_theme_color_local() {
+		if(!window.ImgAvaiable) {
+			if (!window.location.href.includes("localhost") && !window.location.href.includes("127.0.0.1")) {
+				if (localStorage.theme === 'dark') {
+					document.getElementById("webcam").src = "./images/no_video_black.png"
+				} else{
+					document.getElementById("webcam").src = "./images/no_video_white.png"
+				}
+			}
+		}
+	}
+</script>
 </html>

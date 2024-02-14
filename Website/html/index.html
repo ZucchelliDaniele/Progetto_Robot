@@ -84,11 +84,11 @@
 								<svg width="20" height="20" fill="currentColor" class="bi bi-camera" viewBox="0 0 16 16"> <path d="M15 12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1.172a3 3 0 0 0 2.12-.879l.83-.828A1 1 0 0 1 6.827 3h2.344a1 1 0 0 1 .707.293l.828.828A3 3 0 0 0 12.828 5H14a1 1 0 0 1 1 1v6zM2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2z"/> <path d="M8 11a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5zm0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z"/> </svg>
 							</div>
 							<div class="flex-auto">
-							  <a href="./input.html" class="block font-semibold dark:text-white">
-								Camera
-								<span class="absolute inset-0"></span>
-							  </a>
-							  <p class="mt-1 dark:text-white">Watch in real time what your robot is doing</p>
+								<a href="./camera.html" class="block font-semibold dark:text-white">
+									Camera
+									<span class="absolute inset-0"></span>
+								</a>
+								<p class="mt-1 dark:text-white">Watch in real time what your robot is doing</p>
 							</div>
 						  </div>
 						  <div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50">
@@ -98,7 +98,7 @@
 							  </svg>
 							</div>
 							<div class="flex-auto">
-							  <a href="#" class="block font-semibold dark:text-white">
+							  <a href="./security.html" class="block font-semibold dark:text-white">
 								Security
 								<span class="absolute inset-0"></span>
 							  </a>
@@ -199,8 +199,8 @@
 							<!-- 'Robot' sub-menu, show/hide based on menu state. -->
 							<div class="mt-2 space-y-2 transition ease-out duration-200 opacity-0 translate-y-1 hidden" id="MobileMenuDropdown">
 							  <a href="./index.html" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 dark:text-white hover:bg-gray-50">Analytics</a>
-							  <a href="./input.html" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 dark:text-white hover:bg-gray-50">Movement</a>
-							  <a href="#" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 dark:text-white hover:bg-gray-50">Security</a>
+							  <a href="./camera.html" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 dark:text-white hover:bg-gray-50">Camera</a>
+							  <a href="./security.html" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 dark:text-white hover:bg-gray-50">Security</a>
 							  <a href="./integrations.html" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 dark:text-white hover:bg-gray-50">Integrations</a>
 							  <a href="./automations.html" class="block inline-flex rounded-lg py-2 pl-6 text-sm font-semibold leading-7 dark:text-white hover:bg-gray-50">Automations +</a>
 							  <a href="./automations.html" class="block inline-flex rounded-lg py-2 pr-3 text-sm mt-1 leading-7 dark:text-white hover:bg-gray-50">GPT-4 Turbo</a>
@@ -233,7 +233,6 @@
 			<div>
 				<div id="webcamJoystickDiv" class="grid grid-cols-2 min-w-fit">
 					<div id="webcamDiv" class="items-center min-w-fit min-h-fit ring-2 ml-5 rounded-xl m-2 flex ring-gray dark:ring-white-gray rounded-3xl">
-						<img id="webcam" class="p-10 mx-auto align-center align-middle" src="http://raspberrypi.local:8000/stream.mjpg">
 					</div>
 					<div id="joy3Div">
 							
@@ -265,11 +264,19 @@
 			document.getElementById("webcamJoystickDiv").classList = "grid grid-rows-2 min-h-full min-w-full"
 			class_name= "mx-auto items-center align-center hover:cursor-pointer ring-2 ring-gray dark:ring-white-gray rounded-3xl"
 			document.getElementById("webcamDiv").classList ="items-center min-w-fit ring-2 rounded-xl my-4 mx-2 min-h-fit align-middle ring-gray dark:ring-white-gray rounded-3xl"
-		
+			if (window.location.href.includes("localhost") || window.location.href.includes("127.0.0.1")) {
+				document.getElementById("webcamDiv").classList ="hidden items-center min-w-fit ring-2 rounded-xl ml-8 m-2 min-h-fit align-middle ring-gray dark:ring-white-gray rounded-3xl"
+				class_name = "float-right hover:cursor-pointer ring-2 ring-gray dark:ring-white-gray rounded-3xl my-4 mr-1"
+			}
 		}
 		else {
-			class_name = "float-right hover:cursor-pointer ring-2 ring-gray dark:ring-white-gray rounded-3xl my-4 mr-1"
+			class_name = "float-right hover:cursor-pointer ring-2 ring-gray dark:ring-white-gray rounded-3xl my-4 mr-1" 
 			document.getElementById("webcamDiv").classList ="items-center min-w-fit ring-2 rounded-xl ml-8 m-2 min-h-fit align-middle ring-gray dark:ring-white-gray rounded-3xl"
+			if (window.location.href.includes("localhost") || window.location.href.includes("127.0.0.1")) {
+				document.getElementById("webcamDiv").classList ="hidden items-center min-w-fit ring-2 rounded-xl ml-8 m-2 min-h-fit align-middle ring-gray dark:ring-white-gray rounded-3xl"
+				class_name = "float-right hover:cursor-pointer ring-2 ring-gray dark:ring-white-gray rounded-3xl m-8" 
+				document.getElementById("webcamJoystickDiv").classList = "min-h-full min-w-full"
+			}
 		}
 		document.addEventListener("DOMContentLoaded", function () {
     		createJoystick(class_name);
@@ -282,6 +289,10 @@
 
 	<script type="module">
 		"use strict"
+		var update_time = 1;
+		if (window.location.href.includes("localhost") || window.location.href.includes("127.0.0.1")) {
+			update_time = 5;
+		}
 		import { X, Y } from './input.js';
 		import { Fl, Fr, Bl, Br } from './input.js';
 		import { hours, minutes, seconds} from './time.js';
@@ -300,9 +311,9 @@
 			var minutes_start = now.getMinutes().toString().padStart(2, '0');
 			var seconds_start = now.getSeconds().toString().padStart(2, '0');
 			for (let i = 0; i < 20; i++) {
-				var nextSecond = (parseInt(seconds_start) + i) % 60;
+				var nextSecond = (parseInt(seconds_start) + i * update_time) % 60;
 				var nextMinute =
-					parseInt(minutes_start) + Math.floor((parseInt(seconds_start) + i) / 60);
+					parseInt(minutes_start) + Math.floor((parseInt(seconds_start) + i * update_time) / 60);
 				var nextHour =
 					(parseInt(hours_start) + Math.floor(nextMinute / 60)) % 24;
 				
@@ -356,6 +367,14 @@
 				]
 			},
 			options: {
+				animation: function() {
+					if (window.location.href.includes("localhost") || window.location.href.includes("127.0.0.1")) {
+						return false;
+					} else {
+						return true;
+					}
+
+				},
 				scales: {
 					x: {
 						grid: {
@@ -447,6 +466,14 @@
 				]
 			},
 			options: {
+				animation: function() {
+					if (window.location.href.includes("localhost") || window.location.href.includes("127.0.0.1")) {
+						return false;
+					} else {
+						return true;
+					}
+
+				},
 				scales: {
 					x: {
 						grid: {
@@ -529,6 +556,14 @@
 					]
 				},
 				options: {
+					animation: function() {
+						if (window.location.href.includes("localhost") || window.location.href.includes("127.0.0.1")) {
+							return false;
+						} else {
+							return true;
+						}
+
+					},
 					responsive: true,
 					plugins: {
 						legend: {
@@ -587,15 +622,19 @@
 		}
 		Charts();
 		window.change_theme_color_local = function() {
-				// if (localStorage.theme === 'dark') {
-				// 	document.getElementById("webcam").src = "./images/no_video_black.png"
-				
-				// } else{
-				// 	document.getElementById("webcam").src = "./images/no_video_white.png"
-				// }
+				if(!window.ImgAvaiable) {
+					if (localStorage.theme === 'dark') {
+						document.getElementById("webcam").src = "./images/no_video_black.png"
+					
+					} else{
+						document.getElementById("webcam").src = "./images/no_video_white.png"
+					}
+				}
 				var milliseconds = 0;
 				const animationUpdate = setInterval(() => {
 					HoursChart.update();
+					FlBr_FrBl_Chart.update();
+					xyChart.update();
 					if(milliseconds >= 1000) {
 						clearInterval(animationUpdate);
 					}
@@ -618,7 +657,8 @@
 				if(labels.length > 20) {
 					labels.splice(0, 1);
 				}
-			}, 1000);
+				xyChart.update();
+			}, 1000 * update_time);
 			//Update the chart of FlBr and FrBl Values
 			setInterval(() => {
 				Fl_.push(Fl);
@@ -637,26 +677,13 @@
 				if (Br_.length > 19) {
 					Br_.splice(0, 1);
 				}
-			}, 1000);
-
-			setInterval(() => {
-				xyChart.update();
-			}, 100);
-
-			setInterval(() => {
 				FlBr_FrBl_Chart.update();
-			}, 100);
+			}, 1000 * update_time);
 	</script>
 	<script>
 		var loaded = false;
 		window.onload = function() {
 			loaded = true
-			// if (localStorage.theme === 'dark') {
-			// 	document.getElementById("webcam").src = "./images/no_video_black.png"
-				
-			// } else{
-			// 	document.getElementById("webcam").src = "./images/no_video_white.png"
-			// }
 		}
 		window.addEventListener('resize', function(){ 
 			if(loaded) {
@@ -668,6 +695,73 @@
 			}
 		});
 	</script>
+		<script>
+			"use strict"
+			function ReloadVideo() {
+			{
+				// <img id="webcam" class="p-10 mx-auto align-center align-middle" src=getUrlWithNoPort()+":1809/stream.mjpg">
+				var imageUrl = getUrlWithNoPort()+":1809/stream.mjpg";
+				var img = new Image();
+				window.ImgAvaiable = false;
+		
+				img.onload = function() {
+				document.getElementById("webcamDiv").innerHTML = ""
+				var video = document.createElement("img")
+				video.src = getUrlWithNoPort()+":1809/stream.mjpg"
+				video.id = "webcam"
+				video.className = "hover:cursor-pointer p-10 mx-auto align-center align-middle"
+				document.getElementById("webcamDiv").appendChild(video)
+				console.log("Stream is available.");
+				video.onclick = function() {
+					window.location.href = "./camera.html"
+				};
+				document.getElementById("webcam").src = imageUrl;
+				window.ImgAvaiable = true;
+				clearInterval(video_interval);
+				};
+		
+				img.onerror = function() {
+				document.getElementById("webcamDiv").innerHTML = ""
+				var video = document.createElement("img")
+				video.id = "webcam"
+				video.className = "hover:cursor-pointer p-10 mx-auto align-center align-middle"
+				console.error("Error loading stream. It may be unavailable.");
+				video.onclick = function() {
+					ReloadVideo()
+				};
+				if(!window.ImgAvaiable) {
+					if (!window.location.href.includes("localhost") && !window.location.href.includes("127.0.0.1")) {
+						if (localStorage.theme === 'dark') {
+							video.src = "./images/no_video_black.png"
+						} else{
+							video.src = "./images/no_video_white.png"
+						}
+					}
+				}
+				document.getElementById("webcamDiv").appendChild(video)
+				};
+		
+				img.src = imageUrl;
+			}
+		}
+		if (!window.location.href.includes("localhost") && !window.location.href.includes("127.0.0.1")) {
+			ReloadVideo()
+			var video_interval = setInterval(() => {ReloadVideo();}, 10000);
+		}
+			function getUrl() {
+				const url = window.location.href;
+				const parsedUrl = new URL(url);
+				const baseUrl = `${parsedUrl.protocol}//${parsedUrl.host}`;
+				return baseUrl;
+			}
+			function getUrlWithNoPort() {
+				const url = window.location.href;
+	
+				const parsedUrl = new URL(url);
+				const baseUrl = `${parsedUrl.protocol}//${parsedUrl.hostname}`;
+				return baseUrl;
+			}
+		</script>
 </html>
 
 <!-- var ctx3 = document.getElementById('chart3').getContext('2d');

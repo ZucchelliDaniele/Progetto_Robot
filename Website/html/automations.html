@@ -6,7 +6,7 @@
 		<link href="../dist/output.css" rel="stylesheet">
 		<script src="./main.js"></script>
 		<script src="./time.js" type="module" ></script>
-		<script src="./chat.js"></script>
+		<script src="./crypto.js"></script>
 		<title>MecaPiFlex</title>
 		<style>
 			/* Hide the scrollbar */
@@ -81,7 +81,7 @@
 								<svg width="20" height="20" fill="currentColor" class="bi bi-camera" viewBox="0 0 16 16"> <path d="M15 12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1.172a3 3 0 0 0 2.12-.879l.83-.828A1 1 0 0 1 6.827 3h2.344a1 1 0 0 1 .707.293l.828.828A3 3 0 0 0 12.828 5H14a1 1 0 0 1 1 1v6zM2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2z"/> <path d="M8 11a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5zm0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z"/> </svg>
 							</div>
 							<div class="flex-auto">
-								<a href="./input.html" class="block font-semibold dark:text-white">
+								<a href="./camera.html" class="block font-semibold dark:text-white">
 									Camera
 									<span class="absolute inset-0"></span>
 								</a>
@@ -95,7 +95,7 @@
 							  </svg>
 							</div>
 							<div class="flex-auto">
-							  <a href="#" class="block font-semibold dark:text-white">
+							  <a href="./security.html" class="block font-semibold dark:text-white">
 								Security
 								<span class="absolute inset-0"></span>
 							  </a>
@@ -196,8 +196,8 @@
 							<!-- 'Robot' sub-menu, show/hide based on menu state. -->
 							<div class="mt-2 space-y-2 transition ease-out duration-200 opacity-0 translate-y-1 hidden" id="MobileMenuDropdown">
 							  <a href="./index.html" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 dark:text-white hover:bg-gray-50">Analytics</a>
-							  <a href="./input.html" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 dark:text-white hover:bg-gray-50">Movement</a>
-							  <a href="#" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 dark:text-white hover:bg-gray-50">Security</a>
+							  <a href="./camera.html" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 dark:text-white hover:bg-gray-50">Camera</a>
+							  <a href="./security.html" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 dark:text-white hover:bg-gray-50">Security</a>
 							  <a href="./integrations.html" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 dark:text-white hover:bg-gray-50">Integrations</a>
 							  <a href="./automations.html" class="block inline-flex rounded-lg py-2 pl-6 text-sm font-semibold leading-7 dark:text-white hover:bg-gray-50">Automations +</a>
 							  <a href="./automations.html" class="block inline-flex rounded-lg py-2 pr-3 text-sm mt-1 leading-7 dark:text-white hover:bg-gray-50">GPT-4 Turbo</a>
@@ -223,7 +223,8 @@
 			<div class="grid grid-rows-2">
 				<div>
 					<div class="items-center min-w-fit min-h-full ring-2 rounded-xl m-6 flex flex-col ring-gray dark:ring-white-gray rounded-3xl">
-						<img id="webcam" class="p-10 mx-auto align-center align-middle" src="http://raspberrypi.local:8000/stream.mjpg">
+						<div id="webcamDiv">
+						</div>
 						<div class="h-fit text-center dark:text-white mx-auto m-5 text-3xl font-bold">Line Follower</div>
 					<div class="h-fit text-center dark:text-white mx-auto m-5 py-6 px-14 text-3xl font-bold ring-2 bg-green rounded-xl ring-green hover:cursor-pointer"
 					onmousedown="if(this.innerHTML =='Start') {
@@ -254,7 +255,54 @@
                         <span>Chat GPT-4 Turbo</span>
                     </div>
                     <!-- TEXT -->
-                    <div class="overflow-auto h-[70vh]" id="Chat">					
+                    <div class="overflow-auto h-[70vh]" id="Chat">	
+						<div class="dark:text-white mx-20 my-3 ring-2 rounded-3xl p-2 dark:ring-white ring-black flex flex-col-2">
+							<div>
+								<img class="h-8 inline-flex" src="./images/ai_white.png" id="Ai: 0">
+							<h1 class="inline-flex text-2xl ml-2">System</h1>
+							<h1 class="text-xl mt-3 ml-2">Insert password:</h1>
+							<div class="flex my-3 w-72 ml-2 relative">
+								<input 
+									type="password"
+									placeholder="Password..." 
+									class="bg-white-gray dark:bg-black-gray ring-2 dark:ring-white dark:text-white text-black ring-black rounded-xl placeholder-black dark:placeholder-white p-2 w-72 focus:outline-0 focus:ring pr-10"
+									id="PasswordInput"
+								>
+								<img 
+									id="SendImage1"
+									src="" 
+									alt="Image" 
+									class="cursor-pointer absolute right-2 top-2 h-6 w-6 dark:hover:ring-white ring-2 rounded-lg hover:ring-black ring-white-gray dark:ring-black-gray"
+									onclick = "send_passwd()"
+									onmousedown="this.className = 'cursor-pointer absolute right-2 top-2 h-6 w-6 dark:hover:ring-white ring rounded-lg hover:ring-black ring-white-gray dark:ring-black-gray'"
+									onmouseup="this.className = 'cursor-pointer absolute right-2 top-2 h-6 w-6 dark:hover:ring-white ring-2 rounded-lg hover:ring-black ring-white-gray dark:ring-black-gray'"
+									>
+							</div>
+							<h1 class="text-xl mt-3 ml-2">Insert Code:</h1>
+							<div class="flex my-3 w-72 ml-2 relative">
+								<input 
+									type="password"
+									placeholder="Code..." 
+									class="bg-white-gray dark:bg-black-gray ring-2 dark:ring-white dark:text-white text-black ring-black rounded-xl placeholder-black dark:placeholder-white p-2 w-72 focus:outline-0 focus:ring pr-10"
+									id="CodeInput"
+								>
+								<img 
+									id="SendImage2"
+									src="" 
+									alt="Image" 
+									class="cursor-pointer absolute right-2 top-2 h-6 w-6 dark:hover:ring-white ring-2 rounded-lg hover:ring-black ring-white-gray dark:ring-black-gray"
+									onclick = "send_code()"
+									onmousedown="this.className = 'cursor-pointer absolute right-2 top-2 h-6 w-6 dark:hover:ring-white ring rounded-lg hover:ring-black ring-white-gray dark:ring-black-gray'"
+									onmouseup="this.className = 'cursor-pointer absolute right-2 top-2 h-6 w-6 dark:hover:ring-white ring-2 rounded-lg hover:ring-black ring-white-gray dark:ring-black-gray'"
+									>
+							</div>
+							</div>
+							<div class="items-center p-10">
+								<span class="text-xl dark:text-white">
+									For security reasons we save your Api key encrypting it using a password and a code. In order to save your api key to use Chatgpt, you need to insert the password and the code that you saved in the security window.
+								</span>
+							</div>
+						</div>				
                     </div>
                     <!-- INPUT -->
                     <div class="flex items-center justify-center my-3 w-72 mx-auto relative">
@@ -265,7 +313,7 @@
                             id="ChatInput"
                         >
                         <img 
-							id="SendImage"
+							id="SendImage0"
                             src="" 
                             alt="Image" 
                             class="cursor-pointer absolute right-2 top-2 h-6 w-6 dark:hover:ring-white ring-2 rounded-lg hover:ring-black ring-white-gray dark:ring-black-gray"
@@ -283,23 +331,42 @@
 		"use strict"
 		function change_theme_color_local() {
 			if (localStorage.theme === 'dark') {
-				document.getElementById("SendImage").src = "images/send_white.png"
+				for(var i=0; i<3; i++) {
+					document.getElementById("SendImage"+i).src = "images/send_white.png"
+				}
+				if(!window.ImgAvaiable) {
+					document.getElementById("webcam").src = "./images/no_video_black.png"
+				}
 				// document.getElementById("webcam").src = "./images/no_video_black.png"
 				
 			} else{
-				document.getElementById("SendImage").src = "images/send_black.png"
+				for(var i=0; i<3; i++) {
+					document.getElementById("SendImage"+i).src = "images/send_black.png"
+				}
+				if(!window.ImgAvaiable) {
+					document.getElementById("webcam").src = "./images/no_video_white.png"
+				}
 				// document.getElementById("webcam").src = "./images/no_video_white.png"
 			}
 			change_img_color()
 		}
 		window.onload = function() {
 			if (localStorage.theme === 'dark') {
-				document.getElementById("SendImage").src = "images/send_white.png"
-				// document.getElementById("webcam").src = "./images/no_video_black.png"
-				
+				for(var i=0; i<3; i++) {
+					document.getElementById("SendImage"+i).src = "images/send_white.png"
+				}
 			} else{
-				document.getElementById("SendImage").src = "images/send_black.png"
-				// document.getElementById("webcam").src = "./images/no_video_white.png"
+				for(var i=0; i<3; i++) {
+					document.getElementById("SendImage"+i).src = "images/send_black.png"
+				}
+			}
+			if(!window.ImgAvaiable) {
+				if (localStorage.theme === 'dark') {
+					document.getElementById("webcam").src = "./images/no_video_black.png"
+				
+				} else{
+					document.getElementById("webcam").src = "./images/no_video_white.png"
+				}
 			}
 		}
         document.getElementById('ChatInput').addEventListener('keyup', function(event) {
@@ -317,4 +384,276 @@
 			document.getElementById("Body").className = "py-2 px-3 grid gap-2 grid-cols-2"
 		}
     </script>
+	<script>
+		"use strict"
+		function ReloadVideo() {
+			{
+				// <img id="webcam" class="p-10 mx-auto align-center align-middle" src=getUrlWithNoPort()+":1809/stream.mjpg">
+				var imageUrl = getUrlWithNoPort()+":1809/stream.mjpg";
+				var img = new Image();
+				window.ImgAvaiable = false;
+		
+				img.onload = function() {
+				document.getElementById("webcamDiv").innerHTML = ""
+				var video = document.createElement("img")
+				video.src = getUrlWithNoPort()+":1809/stream.mjpg"
+				video.id = "webcam"
+				video.className = "hover:cursor-pointer p-10 mx-auto align-center align-middle"
+				document.getElementById("webcamDiv").appendChild(video)
+				console.log("Stream is available.");
+				video.onclick = function() {
+					window.location.href = "./camera.html"
+				};
+				document.getElementById("webcam").src = imageUrl;
+				window.ImgAvaiable = true;
+				clearInterval(video_interval);
+				};
+		
+				img.onerror = function() {
+				document.getElementById("webcamDiv").innerHTML = ""
+				var video = document.createElement("img")
+				video.id = "webcam"
+				video.className = "hover:cursor-pointer p-10 mx-auto align-center align-middle"
+				console.error("Error loading stream. It may be unavailable.");
+				video.onclick = function() {
+					ReloadVideo()
+				};
+				if(!window.ImgAvaiable) {
+					if (localStorage.theme === 'dark') {
+						video.src = "./images/no_video_black.png"
+					} else{
+						video.src = "./images/no_video_white.png"
+					}
+				}
+				document.getElementById("webcamDiv").appendChild(video)
+				};
+		
+				img.src = imageUrl;
+			}
+		}
+		ReloadVideo()
+		var video_interval = setInterval(() => {ReloadVideo();}, 10000);
+		function getUrl() {
+			const url = window.location.href;
+			const parsedUrl = new URL(url);
+			const baseUrl = `${parsedUrl.protocol}//${parsedUrl.host}`;
+			return baseUrl;
+		}
+		function getUrlWithNoPort() {
+			const url = window.location.href;
+
+			const parsedUrl = new URL(url);
+			const baseUrl = `${parsedUrl.protocol}//${parsedUrl.hostname}`;
+			return baseUrl;
+		}
+	</script>
+	<script>
+		"use strict";
+		var code = ""
+		var passwd = ""
+		var apiKey = ""
+		document.getElementById('CodeInput').addEventListener('keyup', function(event) {
+			// Check if the Enter key (keyCode 13) is pressed
+			if (event.key == "Enter") {
+				// Clear the input value
+				send_code();
+			}
+		});
+		document.getElementById('PasswordInput').addEventListener('keyup', function(event) {
+			// Check if the Enter key (keyCode 13) is pressed
+			if (event.key == "Enter") {
+			// Clear the input value
+				send_passwd();
+			}
+		});
+		function sha256(input) {
+			// Calculate SHA-256 hash
+			var hash = CryptoJS.SHA256(input);
+
+			// Convert the hash to a hexadecimal string
+			var hashHex = hash.toString(CryptoJS.enc.Hex);
+
+			return hashHex;
+		}
+		function send_code() {
+			code = document.getElementById('CodeInput').value;
+			document.getElementById('CodeInput').value = '';
+			try_decrypt()
+		}
+		function send_passwd() {
+			passwd = document.getElementById('PasswordInput').value;
+			document.getElementById('PasswordInput').value = '';
+			try_decrypt()
+		}
+		function try_decrypt() {
+			if(code != "" && passwd != "") {
+				if(localStorage.getItem("Api")) {
+					apiKey = decrypt(localStorage.getItem("Api"), sha256(passwd), code)
+					passwd = ""
+					code = ""
+				}
+			}
+		}
+		function decrypt(ciphertext, password, salt) {
+			var key = CryptoJS.PBKDF2(password, salt, { keySize: 256 / 32, iterations: 1000 });
+			var iv = CryptoJS.enc.Hex.parse(password);
+			var decrypted = CryptoJS.AES.decrypt(ciphertext, key, { iv: iv });
+			return decrypted.toString(CryptoJS.enc.Utf8);
+		}
+		const endpoint = 'https://api.openai.com/v1/chat/completions';
+
+		async function generateChatResponse(prompt) {
+		const data = {
+			model: 'gpt-3.5-turbo-0125',
+			messages: [{ role: 'user', content: prompt }],
+		};
+
+		const response = await fetch(endpoint, {
+			method: 'POST',
+			headers: {
+			'Content-Type': 'application/json',
+			'Authorization': `Bearer ${apiKey}`,
+			},
+			body: JSON.stringify(data),
+		});
+
+		const result = await response.json();
+		return result.choices[0].message.content;
+		}
+
+		var user_id_number = 0;
+		var ai_id_number = 1;
+		function send_input(){
+			var message = document.getElementById('ChatInput').value;
+			document.getElementById('ChatInput').value = '';
+			if(message != "") {
+				const chat = document.getElementById('Chat');
+				const div_index = document.createElement('div');
+				const div_text = document.createElement('div');
+				const span = document.createElement('span');
+				const img = document.createElement('img');
+				const h1 = document.createElement('h1');
+				div_index.className = "dark:text-white mx-20 my-3 flex items-center";
+				img.className = "h-8 inline-flex"
+				if (document.documentElement.classList.contains('dark')) {
+					img.src = "./images/user_white.png"
+				} else {
+					img.src = "./images/user_black.png"
+				}
+				img.id = "UserIcon: " + user_id_number;
+				h1.className = "inline-flex text-2xl ml-2"
+				h1.innerHTML = "User"
+				div_index.appendChild(img);
+				div_index.appendChild(h1);
+				chat.appendChild(div_index);
+				div_text.className = "dark:text-white mx-24 my-3 flex items-center";
+				span.className = "block text-base text-gray-500 mx-7";
+				span.innerHTML = message;
+				div_text.appendChild(span);
+				chat.appendChild(div_text);
+				user_id_number++;
+				scrollToBottom()
+				draw_text()
+				generateChatResponse(message)
+					.then(chatResponse => receive_input(chatResponse))
+					.catch(error => console.error('Error:', error));
+			}
+		}
+		function receive_input(message){
+			var chat = document.getElementById('AiText: ' + (ai_id_number-1));
+			chat.innerHTML = message;
+			const response_img = document.createElement('img');
+			if (localStorage.theme === 'dark') {
+				response_img.src = "./images/response_white.png"
+			
+			} else{
+				response_img.src = "./images/response_black.png"
+			}
+			response_img.id = "Response: " + (ai_id_number - 1);
+			response_img.className = "h-6 my-1.5 hover:cursor-pointer hover:ring-2 rounded-lg dark:ring-white ring-black";
+			response_img.addEventListener('click', function() {
+				var message = (chat.innerHTML).replace(new RegExp('<img src="./images/response_white.png" id="'+response_img.id+'" class="h-6 my-1.5 hover:cursor-pointer hover:ring-2 rounded-lg dark:ring-white ring-black">', 'g'), '');
+				message = message.replace(new RegExp('<img src="./images/response_black.png" id="'+response_img.id+'" class="h-6 my-1.5 hover:cursor-pointer hover:ring-2 rounded-lg dark:ring-white ring-black">', 'g'), '');
+				document.getElementById('ChatInput').value = message;
+			});
+			chat.appendChild(response_img);
+			scrollToBottom()
+		}
+
+		function draw_text(){
+			const chat = document.getElementById('Chat');
+			const div_index = document.createElement('div');
+			const div_text = document.createElement('div');
+			const span = document.createElement('span');
+			const img = document.createElement('img');
+			const h1 = document.createElement('h1');
+			const loading = document.createElement('img');
+			div_index.className = "dark:text-white mx-20 my-3 flex items-center";
+			img.className = "h-8 inline-flex"
+			if (document.documentElement.classList.contains('dark')) {
+				img.src = "./images/ai_white.png"
+			} else {
+				img.src = "./images/ai_black.png"
+			}
+			img.id = "Ai: " + ai_id_number;
+			h1.className = "inline-flex text-2xl ml-2"
+			h1.innerHTML = "ChatGPT"
+			div_index.appendChild(img);
+			div_index.appendChild(h1);
+			chat.appendChild(div_index);
+			div_text.className = "dark:text-white mx-24 my-3 flex items-center";
+			span.className = "block text-base text-gray-500 mx-7";
+			span.id = "AiText: " + ai_id_number;
+			loading.src = "./images/loading.gif"
+			loading.className = "h-8 block"
+			span.appendChild(loading);
+			div_text.appendChild(span);
+			chat.appendChild(div_text);
+			ai_id_number++;
+			scrollToBottom()
+		}
+
+		function change_img_color() {
+			for(var i=0; i<user_id_number; i++) {
+				var img = document.getElementById("UserIcon: " + i)
+				if (document.documentElement.classList.contains('dark')) {
+					img.src = "./images/user_white.png"
+				} else {
+					img.src = "./images/user_black.png"
+				}
+			}
+			for(var i=0; i<ai_id_number; i++) {
+				var img = document.getElementById("Ai: " + i)
+				if (document.documentElement.classList.contains('dark')) {
+					img.src = "./images/ai_white.png"
+					if(i!=0) {
+						if(document.getElementById("Response: " + i)) {
+							document.getElementById("Response: " + i).src = "./images/response_white.png"
+						}
+					}
+				} else {
+					img.src = "./images/ai_black.png"
+					if(i!=0) {
+						if(document.getElementById("Response: " + i)) {
+							document.getElementById("Response: " + i).src = "./images/response_black.png"
+						}
+					}
+				}
+			}
+		}
+
+		function scrollToBottom() {
+			const chatContainer = document.getElementById("Chat");
+			chatContainer.scrollTop = chatContainer.scrollHeight;
+		}
+
+		function sleep(ms) {
+			return new Promise(resolve => setTimeout(resolve, ms));
+		}
+
+		function line_follower(state) {
+			if(state =="start") console.log("Line follower started")
+			else if(state == "stop") console.log("Line follower stopped")
+		}
+	</script>
 </html>

@@ -5,8 +5,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link href="../dist/output.css" rel="stylesheet">
 		<script src="./main.js"></script>
+        <script src="./crypto.js"></script>
 		<script src="./time.js" type="module" ></script>
-		<script src="./chat.js"></script>
 		<title>MecaPiFlex</title>
 		<style>
 			/* Hide the scrollbar */
@@ -217,96 +217,187 @@
 				  </div>
 				</div>
 			  </header>			  
-		  </h1>
-		<!-- body -->
-		<div class="py-2 px-3 grid gap-2 grid-cols-2" id="Body">
-		</div>
+		  </h1>    
+		  <div class="flex-col m-12 ml-16 ">
+			<span class="flex font-bold text-2xl dark:text-white">New Password</span>
+			<div class="flex w-1/4 mt-2 mb-8 relative inline-flex">
+			
+				<input 
+					type="password"
+					placeholder="Password..." 
+					class="bg-white-gray dark:bg-black-gray ring-2 dark:ring-white dark:text-white text-black ring-black w-full rounded-xl placeholder-black dark:placeholder-white p-2 focus:outline-0 focus:ring pr-10"
+					id="PasswordInput"
+				>
+				<img 
+					id="SendImage0"
+					src="" 
+					alt="Image" 
+					class="cursor-pointer absolute right-2 top-2 h-6 w-6 dark:hover:ring-white ring-2 rounded-lg hover:ring-black ring-white-gray dark:ring-black-gray"
+					onclick = "save_passwd()"
+					onmousedown="this.className = 'cursor-pointer absolute right-2 top-2 h-6 w-6 dark:hover:ring-white ring rounded-lg hover:ring-black ring-white-gray dark:ring-black-gray'"
+					onmouseup="this.className = 'cursor-pointer absolute right-2 top-2 h-6 w-6 dark:hover:ring-white ring-2 rounded-lg hover:ring-black ring-white-gray dark:ring-black-gray'"
+					>
+			</div>
+			<div class="flex w-1/4 m-2 mb-8 relative inline-flex">
+				<span class="flex font-bold text-xl dark:text-white" id="saved_passwd"> </span>
+			</div>
+			<span class="flex font-bold text-2xl dark:text-white">New Api Key</span>
+			<div class="flex w-1/4 mt-2 mb-8 relative inline-flex">
+			
+				<input 
+					type="password"
+					placeholder="Api Key..." 
+					class="bg-white-gray dark:bg-black-gray ring-2 dark:ring-white dark:text-white text-black ring-black w-full rounded-xl placeholder-black dark:placeholder-white p-2 focus:outline-0 focus:ring pr-10"
+					id="ApiInput"
+				>
+				<img 
+					id="SendImage1"
+					src="" 
+					alt="Image" 
+					class="cursor-pointer absolute right-2 top-2 h-6 w-6 dark:hover:ring-white ring-2 rounded-lg hover:ring-black ring-white-gray dark:ring-black-gray"
+					onclick = "save_api()"
+					onmousedown="this.className = 'cursor-pointer absolute right-2 top-2 h-6 w-6 dark:hover:ring-white ring rounded-lg hover:ring-black ring-white-gray dark:ring-black-gray'"
+					onmouseup="this.className = 'cursor-pointer absolute right-2 top-2 h-6 w-6 dark:hover:ring-white ring-2 rounded-lg hover:ring-black ring-white-gray dark:ring-black-gray'"
+					>
+			</div>
+			<div class="flex w-1/4 m-2 mb-8 relative inline-flex">
+				<span class="font-bold text-xl dark:text-white text-ellipsis overflow-hidden" id="Encrypted_api">Encrypted Api: </span>
+			</div>
+			<span class="flex font-bold text-2xl dark:text-white">New Code</span>
+			<div class="flex w-1/4 mt-2 mb-8 relative inline-flex">
+			
+				<input 
+					type="password"
+					placeholder="Code..." 
+					class="bg-white-gray dark:bg-black-gray ring-2 dark:ring-white dark:text-white text-black ring-black w-full rounded-xl placeholder-black dark:placeholder-white p-2 focus:outline-0 focus:ring pr-10"
+					id="CodeInput"
+				>
+				<img 
+					id="SendImage2"
+					src="" 
+					alt="Image" 
+					class="cursor-pointer absolute right-2 top-2 h-6 w-6 dark:hover:ring-white ring-2 rounded-lg hover:ring-black ring-white-gray dark:ring-black-gray"
+					onclick = "save_code()"
+					onmousedown="this.className = 'cursor-pointer absolute right-2 top-2 h-6 w-6 dark:hover:ring-white ring rounded-lg hover:ring-black ring-white-gray dark:ring-black-gray'"
+					onmouseup="this.className = 'cursor-pointer absolute right-2 top-2 h-6 w-6 dark:hover:ring-white ring-2 rounded-lg hover:ring-black ring-white-gray dark:ring-black-gray'"
+					>
+			</div>
+			<div class="flex w-1/4 m-2 mb-8 relative inline-flex">
+				<span class="flex font-bold text-xl dark:text-white" id="saved_code"> </span>
+			</div>
+			<span id="passwdError" class="hidden flex font-bold text-l text-red">Insert First the Password and the Code to Encrypt the Api key</span>
+			<span class="flex font-bold text-l dark:text-white">In order to keep save your Api Key insert first the password and the code and after the Api key (otherwise it wouldn't be saved). Both code and password can be made by characters, special characters and numbers.</span>
+		  </div>  
 	</body>
     <script>
-		"use strict"
-        var isMobileView = window.matchMedia('(max-width: 1023px)').matches;
-        var devices = []
-        class device {
-            constructor(name, description, ip) {
-                this.name = name
-                this.description = description
-                this.ip = ip
-            }
+	var hashedPasswd = ""
+	var code = ""
+	function save_passwd() {
+		if(document.getElementById("PasswordInput").value != "") {
+			hashedPasswd = sha256(document.getElementById("PasswordInput").value)
+			document.getElementById("PasswordInput").value = ""
+			document.getElementById("passwdError").className = "hidden flex font-bold text-l text-red"
+			document.getElementById("saved_passwd").innerHTML = "Saved!"
+		}
+	}
+	function load_api() {
+		if(localStorage.getItem("Api")) {
+			var encrypted_api = localStorage.getItem("Api")
+			console.log(encrypted_api.toString())
+			document.getElementById("Encrypted_api").innerHTML = "Encrypted Api: "+ encrypted_api.toString()
+		}
+	}load_api()
+	function save_api() {
+    if (hashedPasswd != "" && code!= "" && document.getElementById("ApiInput").value != "") {
+        var plaintext = document.getElementById("ApiInput").value;
+		var encrypted_api = encrypt(plaintext, hashedPasswd, code.toString());
+        document.getElementById("ApiInput").value = "";
+        document.getElementById("passwdError").className = "hidden flex font-bold text-l text-red";
+        localStorage.setItem("Api", encrypted_api.toString());
+        console.log("Saved Encrypted: ", encrypted_api.toString());
+        document.getElementById("Encrypted_api").innerHTML = "Encrypted Api: " + encrypted_api;
+    } else {
+        document.getElementById("passwdError").className = "flex font-bold text-l text-red";
+    }
+}
+
+	document.getElementById('ApiInput').addEventListener('keyup', function(event) {
+        // Check if the Enter key (keyCode 13) is pressed
+        if (event.key == "Enter") {
+            // Clear the input value
+            save_api();
         }
-        devices.push(new device("RoboPi", "Mecanum Wheel Robot","http://127.0.0.1:5500/html/index.html"))
-        devices.push(new device("PenePi", "Mecanum Wheel Penis","http://127.0.0.1:5500/html/index.html"))
-        devices.push(new device("RoboPi", "Mecanum Wheel Robot","http://127.0.0.1:5500/html/index.html"))
-        devices.push(new device("PenePi", "Mecanum Wheel Penis","http://127.0.0.1:5500/html/index.html"))
-        devices.push(new device("RoboPi", "Mecanum Wheel Robot","http://127.0.0.1:5500/html/index.html"))
-        devices.push(new device("PenePi", "Mecanum Wheel Penis","http://127.0.0.1:5500/html/index.html"))
-		devices.push(new device("PenePi", "Mecanum Wheel Penis","http://127.0.0.1:5500/html/index.html"))
-		devices.push(new device("RoboPi", "Mecanum Wheel Robot","http://127.0.0.1:5500/html/index.html"))
-        devices.push(new device("PenePi", "Mecanum Wheel Penis","http://127.0.0.1:5500/html/index.html"))
-        devices.push(new device("RoboPi", "Mecanum Wheel Robot","http://127.0.0.1:5500/html/index.html"))
-        devices.push(new device("PenePi", "Mecanum Wheel Penis","http://127.0.0.1:5500/html/index.html"))
-		devices.push(new device("PenePi", "Mecanum Wheel Penis","http://127.0.0.1:5500/html/index.html"))
-        function createCards() {
-            var index = 0
-            var rows = 0
-            document.getElementById("Body").innerHTML = ""
-                while(index < devices.length) {
-                    var row = document.createElement("div")
-                    var columns_number
-                    if(isMobileView) {
-                    row.className = "grid grid-cols-2"
-                    columns_number = 2
-                    }
-                    else {
-                    row.className = "grid grid-cols-5"
-                    columns_number = 5
-                    }
-                    for(var cols = 0; cols < columns_number; cols++) {
-                    if(index < (devices.length)) {
-                        document.getElementById("Body").className = "grid grid-rows-"+rows+1
-                        var card = document.createElement("div")
-                        var img = document.createElement("img")
-                        var title = document.createElement("h1")
-                        var description = document.createElement("p")
-                        img.src = "./images/Mecanum-Wheels-Robot-Car.png"
-                        img.style.objectFit = "cover";
-                        img.className = "h-full w-full dark:ring-white ring-2 ring-gray dark:ring-white"
-                        img.loading = "eager";
-                        card.appendChild(img)
-                        title.innerHTML = devices[index].name
-                        if(index % 2 == 0) {
-                            title.className = "text-2xl font-bold text-red m-2"
-                        }
-                        else title.className = "text-2xl font-bold text-white-blue m-2"
-                        card.appendChild(title)
-                        card.id = index
-                        description.innerHTML = devices[index].description
-                        description.className = "text-lg dark:text-white m-2"
-                        card.appendChild(description)
-                        card.className = "overflow-hidden m-6 rounded-lg text-center h-fit hover:cursor-pointer dark:ring-white ring-gray dark: hover:ring-4 ring bg-white-gray dark:bg-black-gray transition ease-in dark:ease-out duration-500"
-                        card.onclick = function() {
-                        devices[this.id].ip
-                        window.location.href = devices[this.id].ip
-                        }
-                        row.appendChild(card)
-                        index++
-                    }
-                    }
-					if(index == (devices.length)){
-						document.getElementById("Body").className = "grid grid-rows-"+rows+1
-                        var card = document.createElement("div")
-						var img = document.createElement("img")
-						img.src = "./images/loading_circle.gif"
-                        img.style.objectFit = "cover";
-                        img.className = "h-32 dark:ring-white mx-auto align-middle"
-                        img.loading = "eager";
-						card.className = "overflow-hidden m-6 my-24 text-center h-fit items-center justify-center align-middle"
-                        card.appendChild(img)
-						row.appendChild(card)
-					}
-                    document.getElementById("Body").appendChild(row)
-					rows++
-                }
+    });
+	document.getElementById('PasswordInput').addEventListener('keyup', function(event) {
+        // Check if the Enter key (keyCode 13) is pressed
+        if (event.key == "Enter") {
+           // Clear the input value
+            save_passwd();
         }
-        createCards()
+    });
+	document.getElementById('CodeInput').addEventListener('keyup', function(event) {
+        // Check if the Enter key (keyCode 13) is pressed
+        if (event.key == "Enter") {
+           // Clear the input value
+            save_code();
+        }
+    });
+	function save_code() {
+		if(document.getElementById("CodeInput").value != "") {
+			code = document.getElementById("CodeInput").value
+			document.getElementById("CodeInput").value = ""
+			document.getElementById("passwdError").className = "hidden flex font-bold text-l text-red"
+			document.getElementById("saved_code").innerHTML = "Saved!"
+		}
+	}
+    function sha256(input) {
+        // Calculate SHA-256 hash
+        var hash = CryptoJS.SHA256(input);
+
+        // Convert the hash to a hexadecimal string
+        var hashHex = hash.toString(CryptoJS.enc.Hex);
+
+        return hashHex;
+    }
     </script>
+	<script>
+		function change_theme_color_local() {
+			if (localStorage.theme === 'dark') {
+				for(var i=0; i<3; i++) {
+					document.getElementById("SendImage"+i).src = "images/send_white.png"
+				}
+				
+			} else{
+				for(var i=0; i<3; i++) {
+					document.getElementById("SendImage"+i).src = "images/send_black.png"
+				}
+			}
+			change_img_color()
+		}
+		window.onload = function() {
+			if (localStorage.theme === 'dark') {
+				for(var i=0; i<3; i++) {
+					document.getElementById("SendImage"+i).src = "images/send_white.png"
+				}
+			} else{
+				for(var i=0; i<3; i++) {
+					document.getElementById("SendImage"+i).src = "images/send_black.png"
+				}
+			}
+		}
+	</script>
+	<script>
+		function encrypt(plaintext, password, salt) {
+			var key = CryptoJS.PBKDF2(password, salt, { keySize: 256 / 32, iterations: 1000 });
+			var iv = CryptoJS.enc.Hex.parse(password);
+			var ciphertext = CryptoJS.AES.encrypt(plaintext, key, { iv: iv });
+			return ciphertext.toString();
+		}
+		function decrypt(ciphertext, password, salt) {
+			var key = CryptoJS.PBKDF2(password, salt, { keySize: 256 / 32, iterations: 1000 });
+			var iv = CryptoJS.enc.Hex.parse(password);
+			var decrypted = CryptoJS.AES.decrypt(ciphertext, key, { iv: iv });
+			return decrypted.toString(CryptoJS.enc.Utf8);
+		}
+	</script>
 </html>

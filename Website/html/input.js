@@ -390,12 +390,10 @@ var JoyStick = (function(container, parameters, callback, classname)
 export function createJoystick(classname) {
     Joy = new JoyStick('joy3Div', "", "", classname);
     updateJoystickColor()
-    if (window.location.pathname.includes("input.html")) {
-        var joyX = document.getElementById("joyX");
-        var joyY = document.getElementById("joyY");
-        setInterval(function(){ joyX.value=Joy.GetX(); });
-        setInterval(function(){ joyY.value=Joy.GetY(); });
-    }
+    // if (window.location.pathname.includes("input.html")) {
+    //     setInterval(function(){ console.log(Joy.GetX()) });
+    //     setInterval(function(){ console.log(Joy.GetY()) });
+    // }
     setInterval(function(){
         degrees = calcAngleDegrees(Joy.GetX(), Joy.GetY())
         radiants = calcAngleDegrees(Joy.GetX(), Joy.GetY()) / 180.0 * Math.PI
@@ -478,13 +476,6 @@ export function createJoystick(classname) {
             Fl = Math.round((Math.sin((radiants + (1/4) * Math.PI).toFixed(5))) * 100000 * magnitude) / 100000
             Br = Math.round((Math.sin((radiants + (1/4) * Math.PI).toFixed(5))) * 100000 * magnitude) / 100000
         }
-        if (window.location.pathname.includes("input.html")) {
-            document.getElementById("degrees").innerHTML= degrees
-            document.getElementById("radiant").innerHTML= radiants
-            document.getElementById("magnitude").innerHTML= magnitude
-            document.getElementById("FR-BL").innerHTML = Fr
-            document.getElementById("FL-BR").innerHTML = Fl
-        }
         updateJoystickColor()
     });
 }
@@ -504,10 +495,6 @@ function updateGamepadState() {
     // Compare button values and update HTML elements
     for (let i = 0; i < gamepad.buttons.length; i++) {
         const buttonValue = gamepad.buttons[i].value;
-        if (window.location.pathname.includes("input.html")) {
-            document.getElementById(`B${i}`).value = 0;
-            document.getElementById(`B${i}`).value = buttonValue;
-        }
         if(i==10 && buttonValue==1 && JoystickSwapStatus == false) {
             SwapJoystick()
         }
@@ -570,12 +557,12 @@ function updateGamepadState() {
     const rightStickY = gamepad.axes[3];
 
     // Update HTML elements with analog values
-    if (window.location.pathname.includes("input.html")) {
-        document.getElementById("LeftStickX").value = leftStickX;
-        document.getElementById("LeftStickY").value = -leftStickY;
-        document.getElementById("RightStickX").value = rightStickX;
-        document.getElementById("RightStickY").value = -rightStickY;
-    }
+    // if (window.location.pathname.includes("input.html")) {
+    //     document.getElementById("LeftStickX").value = leftStickX;
+    //     document.getElementById("LeftStickY").value = -leftStickY;
+    //     document.getElementById("RightStickX").value = rightStickX;
+    //     document.getElementById("RightStickY").value = -rightStickY;
+    // }
 
     var valueX
     var valueY
@@ -612,9 +599,6 @@ window.addEventListener("gamepadconnected", (e) => {
     e.gamepad.axes.length
   );
 
-  if (window.location.pathname.includes("input.html")) {
-    document.getElementById("GamepadStatus").innerHTML="Gamepad connected at index"+ e.gamepad.index+": "+ e.gamepad.id+". "+  e.gamepad.buttons.length +" buttons, "+e.gamepad.axes.length+" axes."
-  }
 
   // Start updating gamepad state
   updateGamepadState();
@@ -627,23 +611,14 @@ window.addEventListener("gamepaddisconnected", (e) => {
     e.gamepad.index,
     e.gamepad.id
   );
-  if (window.location.pathname.includes("input.html")) {
-    document.getElementById("GamepadStatus").innerHTML= "Gamepad disconnected from index "+e.gamepad.index+": "+e.gamepad.id
-  }
 });
 
 function SwapJoystick() {
         if(JoystickSwapStatus) {
             JoystickSwapStatus=false
-            if (window.location.pathname.includes("input.html")) {
-                document.getElementById("JoyStickSwap").innerText = "LeftStick"
-            }
         }
         else {
             JoystickSwapStatus = true
-            if (window.location.pathname.includes("input.html")) {
-                document.getElementById("JoyStickSwap").innerText = "RightStick"
-            }
         }
 }
 
