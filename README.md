@@ -1,3 +1,5 @@
+Conversione del sito in SvelteKit Repo: https://github.com/ZucchelliDaniele/Progetto_Robot_SvelteKit
+
 # Progetto Robot
 # Problema
 L'uomo è impreciso/sbaglia/perde quando vengono trasportati tanti oggetti di piccole dimensioni, quando bisogna fare un lavoro preciso e continuo suguendo una linea precisa e quando bisogna fare movimenti precisi e veloci 
