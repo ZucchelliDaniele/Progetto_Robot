@@ -19,15 +19,6 @@ Gli utenti hanno la possibilità di comandare il robot da remoto tramite un comp
   ### Requisiti Non Funzionali:
 * ### Ampia Compatibilità:
 Il sistema deve riconoscere un ampia gamma di dispositivi per facilitare l'utilizzo del robot
-* ## Requisiti di Sistema
-  ### Requisiti Funzionali:
-* ### Rilevanento di Ostacoli
-* Il robot deve rilevare gli ostacoli/muri
-* ### Inseguimento di linee a terra
-* Il robot dovrà seguire una o piu linee a terra di un colore specifico dettato dal sistema/utente
-  ### Requisiti Non Funzionali:
-* ### Presa di oggetti
-* Il robot deve avere un gancio per la presa di oggetti (gancio manuale o non)
 ![Alt UML](https://yuml.me/diagram/usecase/[Visitor]-(Login),(Login)<(Contact%20Staff),[Visitor]-(Register),[Visitor]-(Buy%20Robot),(Buy%20Robot)>(Contact%20Staff),(Login)<(Reset%20Password),[Registered%20User]-(Add%20Robot),[Registered%20User]-(Remove%20Robot),(Add%20Robot)<(See%20Analytics),(Add%20Robot)<(Control%20Robot),[Registered%20User]-(Use%20Remote%20Connected%20Phone%20/%20PC),(Use%20Remote%20Connected%20Phone%20/%20PC)<(Use%20Gamepad),(Control%20Robot)<(Use%20Gamepad),[Office%20Staff]-(Add%20functionalities),)
 
 # Value Proposition
