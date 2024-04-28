@@ -48,4 +48,13 @@ Semplifica i tuoi lavori tramite RoboPi, un robot automatizzato con interfaccia 
 ## Staff 
 * Come utente "staff" voglio poter aggiornare e migliorare il codice dei robot prodotti tramite la pubblicazione di nuove versioni su questo github
 
-
+# Multi Tenancy
+## Login / Register
+* L'utente deve recarsi fisicamente al robot per aggiungere il proprio dispositivo tramite un codice univoco e casuale
+* Ogni dispositivo si autentica automaticamente nel caso sia stato già registrato
+* Ogni dispositivo viene rimosso dopo 7 giorni di inutilizzo del robot
+* Ad ogni utilizzo viene aggiornata la lista degli utilizzi del robot
+## Utilizzo
+* Ogni utente ha la possibilità di comandare il robot a distanza, tuttavia se più utenti vogliono comandare lo stesso robot bisogna accettare la richiesta di utilizzo sullo schermo del robot stesso per decidere quale utente lo utilizza in quel momento
+* Ogni utente ha la possibilità di visualizzare i robot presenti all'interno della rete e accedervi ad essi tramite i passaggi precedentemente descritti
+* Ogni utente ha la possibilità di visualizzare la telecamera presente sul robot e tener visivamente traccia dell'utilizzo
