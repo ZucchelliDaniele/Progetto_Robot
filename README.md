@@ -58,3 +58,4 @@ Semplifica i tuoi lavori tramite RoboPi, un robot automatizzato con interfaccia 
 * Ogni utente ha la possibilità di comandare il robot a distanza, tuttavia se più utenti vogliono comandare lo stesso robot bisogna accettare la richiesta di utilizzo sullo schermo del robot stesso per decidere quale utente lo utilizza in quel momento
 * Ogni utente ha la possibilità di visualizzare i robot presenti all'interno della rete e accedervi ad essi tramite i passaggi precedentemente descritti
 * Ogni utente ha la possibilità di visualizzare la telecamera presente sul robot e tener visivamente traccia dell'utilizzo
+* L'utente che comanda il robot direttamente da esso e non mediante un altro dispositivo ha il controllo del robot e può rimuovere il controllo agl'altri utenti
