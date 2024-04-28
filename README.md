@@ -41,10 +41,6 @@ Semplifica i tuoi lavori tramite RoboPi, un robot automatizzato con interfaccia 
 * Come utente connesso tramite controllo locale voglio poter utilizzare il mio robot direttamente da esso con dispositivi di input annessi (gamepad, touchscreen) senza l'utilizzo di dispositivi esterni (smartphone, PC, ecc..)
 ## Controllo remoto
 * Come utente connesso tramite controllo remoto voglio poter utilizzare il mio robot da distanza ed avere un'esperienza al più simile a quella del controllo locale, non saranno obbligatori dispositivi di input annessi al robot (gamepad, touchscreen), ma che siamo solamente facoltativi rispetto ai dispositivi esterni (smartphone o/e PC, ecc..)
-## Rilevamento ostacoli
-* Come utente connesso tramite controllo remoto e/o locale voglio poter visualizzare le distanze di oggetti dal mio robot per rilevare possibili ostacoli
-## Inseguimento linea/e
-* Come utente connesso tramite controllo remoto e/o locale voglio poter attivare una funzione per far si che il mio robot inizi a inseguire la/e linea/e a terra (per il corretto utilizzo il robot dovrà essere posizionato su una linea prima che la funzione sia attivata)
 ## Visualizzazione spazio fisico
 * Come utente connesso tramite controllo remoto e/o locale voglio poter visualizzare lo spazio fisico davanti al robot tramite una telecamera in qualsiasi condizione di luce (giorno e notte)
 ## Trasposto oggetti
