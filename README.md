@@ -64,3 +64,18 @@ Semplifica i tuoi lavori tramite RoboPi, un robot automatizzato con interfaccia 
 * Ogni utente ha la possibilità di visualizzare i robot presenti all'interno della rete e accedervi ad essi tramite i passaggi precedentemente descritti
 * Ogni utente ha la possibilità di visualizzare la telecamera presente sul robot e tener visivamente traccia dell'utilizzo
 * L'utente che comanda il robot direttamente da esso e non mediante un altro dispositivo ha il controllo del robot e può rimuovere il controllo agl'altri utenti
+
+# Come fare il tuo robot
+## Setup del raspberry pi
+* Prendi una scheda micro sd e installa raspberry pi Bullseye (64bit)
+* Mettila nel tuo raspberry (consigliato il 4)
+* Installa il raspberry ad un monitor touch (7 pollici nel mio caso)
+* Installa la webcam nel raspberry (utilizzo la raspberry pi camera module 3 Noir-Wide)
+* Attacca il raspberry ad un powerbank (consigliabili almeno 50W)
+* Scarica questa repository
+* Scarica i node modules
+* Avvia il server web (consigliabile la modalità host)
+* Avvia il server nodejs in backend
+* Avvia i server python websocket e camera
+## Modelli 3D
+* I Modelli 3D saranno presto disponibili sulla repository
