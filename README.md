@@ -21,6 +21,10 @@ Gli utenti hanno la possibilità di comandare il robot da remoto tramite un comp
 Il sistema deve riconoscere un ampia gamma di dispositivi per facilitare l'utilizzo del robot
 ![Alt UML](https://yuml.me/diagram/usecase/[Visitor]-(Login),(Login)<(Contact%20Staff),[Visitor]-(Register),[Visitor]-(Buy%20Robot),(Buy%20Robot)>(Contact%20Staff),(Login)<(Reset%20Password),[Registered%20User]-(Add%20Robot),[Registered%20User]-(Remove%20Robot),(Add%20Robot)<(See%20Analytics),(Add%20Robot)<(Control%20Robot),[Registered%20User]-(Use%20Remote%20Connected%20Phone%20/%20PC),(Use%20Remote%20Connected%20Phone%20/%20PC)<(Use%20Gamepad),(Control%20Robot)<(Use%20Gamepad),[Office%20Staff]-(Add%20functionalities),)
 
+# WBS
+![Colorful Work Breakdown Structure](https://github.com/ZucchelliDaniele/Progetto_Robot/assets/101174771/f6201000-e07e-4f35-9d00-4ce9f19a9be0)
+
+
 # Value Proposition
 ## Semplifica il tuo lavoro con RoboPi
 ### Lavoro preciso e facile
