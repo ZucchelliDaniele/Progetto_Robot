@@ -3,6 +3,16 @@ Repository creata a fini di scopo scolastico
 ### Questa repository è utilizzata soltanto per mantenere le routes e i server python necessari fino a quando la versione in sveltekit non sarà completa, attualmente l'unica versione con middleware funzionante è quella in Sveltekit
 Conversione del sito in SvelteKit Repo: https://github.com/ZucchelliDaniele/Progetto_Robot_SvelteKit
 
+# Sezioni
+* ## [Problema](https://github.com/ZucchelliDaniele/Progetto_Robot?tab=readme-ov-file#problema)
+* ## [Obbiettivo](https://github.com/ZucchelliDaniele/Progetto_Robot?tab=readme-ov-file#obbiettivo)
+* ## [Funzionalità](https://github.com/ZucchelliDaniele/Progetto_Robot?tab=readme-ov-file#funzionalit%C3%A0)
+* ## [WBS](https://github.com/ZucchelliDaniele/Progetto_Robot?tab=readme-ov-file#wbs)
+* ## [Value Proposition](https://github.com/ZucchelliDaniele/Progetto_Robot?tab=readme-ov-file#value-proposition)
+* ## [User Stories](https://github.com/ZucchelliDaniele/Progetto_Robot?tab=readme-ov-file#user-stories)
+* ## [Multi Tenancy](https://github.com/ZucchelliDaniele/Progetto_Robot?tab=readme-ov-file#multi-tenancy)
+* ## [Come fare il tuo robot](https://github.com/ZucchelliDaniele/Progetto_Robot?tab=readme-ov-file#come-fare-il-tuo-robot)
+
 # Progetto Robot
 # Problema
 L'uomo è impreciso/sbaglia/perde quando vengono trasportati tanti oggetti di piccole dimensioni, quando bisogna fare un lavoro preciso e continuo suguendo una linea precisa e quando bisogna fare movimenti precisi e veloci 
@@ -22,7 +32,6 @@ Gli utenti hanno la possibilità di comandare il robot da remoto tramite un comp
   ### Requisiti Non Funzionali:
 * ### Ampia Compatibilità:
 Il sistema deve riconoscere un ampia gamma di dispositivi per facilitare l'utilizzo del robot
-![Alt UML](https://yuml.me/diagram/usecase/[Visitor]-(Login),(Login)<(Contact%20Staff),[Visitor]-(Register),[Visitor]-(Buy%20Robot),(Buy%20Robot)>(Contact%20Staff),(Login)<(Reset%20Password),[Registered%20User]-(Add%20Robot),[Registered%20User]-(Remove%20Robot),(Add%20Robot)<(See%20Analytics),(Add%20Robot)<(Control%20Robot),[Registered%20User]-(Use%20Remote%20Connected%20Phone%20/%20PC),(Use%20Remote%20Connected%20Phone%20/%20PC)<(Use%20Gamepad),(Control%20Robot)<(Use%20Gamepad),[Office%20Staff]-(Add%20functionalities),)
 
 # WBS
 ![Colorful Work Breakdown Structure](https://github.com/ZucchelliDaniele/Progetto_Robot/assets/101174771/f6201000-e07e-4f35-9d00-4ce9f19a9be0)
@@ -54,6 +63,7 @@ Semplifica i tuoi lavori tramite RoboPi, un robot automatizzato con interfaccia 
 * Come utente connesso in locale voglio poter trasportare degli oggetti adeguati tramite i dispositivi annessi al robot o esterni
 ## Staff 
 * Come utente "staff" voglio poter aggiornare e migliorare il codice dei robot prodotti tramite la pubblicazione di nuove versioni su questo github
+![Alt UML](https://yuml.me/diagram/usecase/[Visitor]-(Login),(Login)<(Contact%20Staff),[Visitor]-(Register),[Visitor]-(Buy%20Robot),(Buy%20Robot)>(Contact%20Staff),(Login)<(Reset%20Password),[Registered%20User]-(Add%20Robot),[Registered%20User]-(Remove%20Robot),(Add%20Robot)<(See%20Analytics),(Add%20Robot)<(Control%20Robot),[Registered%20User]-(Use%20Remote%20Connected%20Phone%20/%20PC),(Use%20Remote%20Connected%20Phone%20/%20PC)<(Use%20Gamepad),(Control%20Robot)<(Use%20Gamepad),[Office%20Staff]-(Add%20functionalities),)
 
 # Multi Tenancy
 ## Login / Register
