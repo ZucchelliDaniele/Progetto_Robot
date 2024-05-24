@@ -81,4 +81,4 @@ Semplifica i tuoi lavori tramite RoboPi, un robot automatizzato con interfaccia 
 * Avvia i server python websocket e camera
 ## Modelli 3D
 * ### PowerBank
-<iframe src="https://github.com/ZucchelliDaniele/Progetto_Robot/blob/main/Robot3DModels/PowerBank.stl" width="400" height="400" frameborder="0"></iframe>
+<iframe width="640" height="480" src="https://sketchfab.com/models/876458991d1e420aacf548b911a2f94f/embed" frameborder="0" allow="autoplay; fullscreen; vr"></iframe>
