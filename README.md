@@ -4,14 +4,14 @@ Repository creata a fini di scopo scolastico
 Conversione del sito in SvelteKit Repo: https://github.com/ZucchelliDaniele/Progetto_Robot_SvelteKit
 
 ## Sezioni
-* ### [Problema](https://github.com/ZucchelliDaniele/Progetto_Robot?tab=readme-ov-file#problema)
-* ### [Obbiettivo](https://github.com/ZucchelliDaniele/Progetto_Robot?tab=readme-ov-file#obbiettivo)
-* ### [Funzionalità](https://github.com/ZucchelliDaniele/Progetto_Robot?tab=readme-ov-file#funzionalit%C3%A0)
-* ### [WBS](https://github.com/ZucchelliDaniele/Progetto_Robot?tab=readme-ov-file#wbs)
-* ### [Value Proposition](https://github.com/ZucchelliDaniele/Progetto_Robot?tab=readme-ov-file#value-proposition)
-* ### [User Stories](https://github.com/ZucchelliDaniele/Progetto_Robot?tab=readme-ov-file#user-stories)
-* ### [Multi Tenancy](https://github.com/ZucchelliDaniele/Progetto_Robot?tab=readme-ov-file#multi-tenancy)
-* ### [Come fare il tuo robot](https://github.com/ZucchelliDaniele/Progetto_Robot?tab=readme-ov-file#come-fare-il-tuo-robot)
+* ### [Problema](https://github.com/ZucchelliDaniele/Progetto_Robot?tab=readme-ov-file#problema-1)
+* ### [Obbiettivo](https://github.com/ZucchelliDaniele/Progetto_Robot?tab=readme-ov-file#obbiettivo-1)
+* ### [Funzionalità](https://github.com/ZucchelliDaniele/Progetto_Robot?tab=readme-ov-file#funzionalit%C3%A0-1)
+* ### [WBS](https://github.com/ZucchelliDaniele/Progetto_Robot?tab=readme-ov-file#wbs-1)
+* ### [Value Proposition](https://github.com/ZucchelliDaniele/Progetto_Robot?tab=readme-ov-file#value-proposition-1)
+* ### [User Stories](https://github.com/ZucchelliDaniele/Progetto_Robot?tab=readme-ov-file#user-stories-1)
+* ### [Multi Tenancy](https://github.com/ZucchelliDaniele/Progetto_Robot?tab=readme-ov-file#multi-tenancy-1)
+* ### [Come fare il tuo robot](https://github.com/ZucchelliDaniele/Progetto_Robot?tab=readme-ov-file#come-fare-il-tuo-robot-1)
 
 # Progetto Robot
 # Problema
