@@ -3,15 +3,15 @@ Repository creata a fini di scopo scolastico
 ### Questa repository è utilizzata soltanto per mantenere le routes e i server python necessari fino a quando la versione in sveltekit non sarà completa, attualmente l'unica versione con middleware funzionante è quella in Sveltekit
 Conversione del sito in SvelteKit Repo: https://github.com/ZucchelliDaniele/Progetto_Robot_SvelteKit
 
-# Sezioni
-* ## [Problema](https://github.com/ZucchelliDaniele/Progetto_Robot?tab=readme-ov-file#problema)
-* ## [Obbiettivo](https://github.com/ZucchelliDaniele/Progetto_Robot?tab=readme-ov-file#obbiettivo)
-* ## [Funzionalità](https://github.com/ZucchelliDaniele/Progetto_Robot?tab=readme-ov-file#funzionalit%C3%A0)
-* ## [WBS](https://github.com/ZucchelliDaniele/Progetto_Robot?tab=readme-ov-file#wbs)
-* ## [Value Proposition](https://github.com/ZucchelliDaniele/Progetto_Robot?tab=readme-ov-file#value-proposition)
-* ## [User Stories](https://github.com/ZucchelliDaniele/Progetto_Robot?tab=readme-ov-file#user-stories)
-* ## [Multi Tenancy](https://github.com/ZucchelliDaniele/Progetto_Robot?tab=readme-ov-file#multi-tenancy)
-* ## [Come fare il tuo robot](https://github.com/ZucchelliDaniele/Progetto_Robot?tab=readme-ov-file#come-fare-il-tuo-robot)
+## Sezioni
+* ### [Problema](https://github.com/ZucchelliDaniele/Progetto_Robot?tab=readme-ov-file#problema)
+* ### [Obbiettivo](https://github.com/ZucchelliDaniele/Progetto_Robot?tab=readme-ov-file#obbiettivo)
+* ### [Funzionalità](https://github.com/ZucchelliDaniele/Progetto_Robot?tab=readme-ov-file#funzionalit%C3%A0)
+* ### [WBS](https://github.com/ZucchelliDaniele/Progetto_Robot?tab=readme-ov-file#wbs)
+* ### [Value Proposition](https://github.com/ZucchelliDaniele/Progetto_Robot?tab=readme-ov-file#value-proposition)
+* ### [User Stories](https://github.com/ZucchelliDaniele/Progetto_Robot?tab=readme-ov-file#user-stories)
+* ### [Multi Tenancy](https://github.com/ZucchelliDaniele/Progetto_Robot?tab=readme-ov-file#multi-tenancy)
+* ### [Come fare il tuo robot](https://github.com/ZucchelliDaniele/Progetto_Robot?tab=readme-ov-file#come-fare-il-tuo-robot)
 
 # Progetto Robot
 # Problema
