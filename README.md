@@ -92,3 +92,6 @@ Semplifica i tuoi lavori tramite RoboPi, un robot automatizzato con interfaccia 
 ## Modelli 3D
 * ### [PowerBank](https://github.com/ZucchelliDaniele/Progetto_Robot/blob/b7cdaec23b4a2052f64a399bd6fec9496ad9d125/Robot3DModels/PowerBank.stl)
 * ### [PiCase](https://github.com/ZucchelliDaniele/Progetto_Robot/blob/09322e6c2641f126dbb73ce9fab60052f773395a/Robot3DModels/PiCase.stl)
+* ### Esempio:
+  ![image](https://github.com/ZucchelliDaniele/Progetto_Robot/assets/101174771/76996312-f0ec-4c12-a43b-170aaf0a8d02)
+
