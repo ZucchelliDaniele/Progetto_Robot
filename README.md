@@ -89,6 +89,7 @@ Semplifica i tuoi lavori tramite RoboPi, un robot automatizzato con interfaccia 
 * Avvia il server web (consigliabile la modalità host)
 * Avvia il server nodejs in backend
 * Avvia i server python websocket e camera
+* Preferibilmente crea dei service per avviare i server automaticamente
 ## Modelli 3D
 * ### [PowerBank](https://github.com/ZucchelliDaniele/Progetto_Robot/blob/b7cdaec23b4a2052f64a399bd6fec9496ad9d125/Robot3DModels/PowerBank.stl)
 * ### [PiCase](https://github.com/ZucchelliDaniele/Progetto_Robot/blob/09322e6c2641f126dbb73ce9fab60052f773395a/Robot3DModels/PiCase.stl)
